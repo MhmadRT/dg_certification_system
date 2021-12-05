@@ -1,6 +1,7 @@
 import 'package:dg_certification_system/controller/state_control.dart';
 import 'package:dg_certification_system/model/menu_tap_model.dart';
 import 'package:dg_certification_system/view/screens/courses_screen.dart';
+import 'package:dg_certification_system/view/screens/drag_and_drop_screen.dart';
 import 'package:dg_certification_system/view/screens/trainees_screen.dart';
 import 'package:dg_certification_system/view/screens/trainers_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,7 +14,7 @@ class HomeController extends StateControl {
     CoursesScreen(),
     TrainersScreen(),
     TraineesScreen(),
-    Text('4'),
+    DragAndDropScreen()
   ];
   List<MenuTapModel>? taps;
 
@@ -54,8 +55,8 @@ class HomeController extends StateControl {
         clicked: index == 3,
       ),
       MenuTapModel(
-        icon: 'technician',
-        title: 'الإعدادات',
+        icon: 'add_cir',
+        title: 'ادارة الشهادت',
         id: 4,
         small: false,
         clicked: index == 4,
