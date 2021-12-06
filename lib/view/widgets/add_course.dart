@@ -272,10 +272,10 @@ class AddCourse extends StatelessWidget {
                                 height: 50,
                                 color: Colors.white,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Flexible(
+                              const Flexible(
                                 child: Text(
                                   "اضافة مجموعة من المتدربين عن طريق ملف اكسل",
                                   textAlign: TextAlign.center,
@@ -379,10 +379,12 @@ class AddCourse extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+
+                  },
                   child: const Center(
                     child: Text(
-                      "أضافة متدربين",
+                      "أضافة",
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

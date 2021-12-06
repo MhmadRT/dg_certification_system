@@ -57,7 +57,7 @@ class DashboardScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Expanded(child: CoursesGridWidget())
+                      const Expanded(child: CoursesGridWidget())
                     ],
                   ),
                 ),
@@ -65,7 +65,7 @@ class DashboardScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: defaultPadding),
-          AvailableCourseList(),
+          const AvailableCourseList(),
         ],
       ),
     );

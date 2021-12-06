@@ -9,13 +9,13 @@ class CoursesGridWidget extends StatelessWidget {
   Widget build(BuildContext context) {
       return GridView.builder(
         shrinkWrap: true,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
 
         ),
-        itemBuilder: (_, index) => SizedBox(
+        itemBuilder: (_, index) => const SizedBox(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             child: CourseCardWidget(
                 image:
                     'https://academy.dimensionsgroup.sa/wp-content/uploads/2020/12/WhatsApp-Image-2020-12-10-at-11.16.49-AM.jpeg'),

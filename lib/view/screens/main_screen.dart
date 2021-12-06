@@ -124,18 +124,18 @@ class _MainScreenState extends State<MainScreen> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                     bottomLeft: appLang == 'ar'
-                                        ? Radius.circular(20)
-                                        : Radius.circular(0),
+                                        ? const Radius.circular(20)
+                                        : const Radius.circular(0),
                                     topLeft: appLang == 'ar'
-                                        ? Radius.circular(20)
-                                        : Radius.circular(0),
+                                        ? const Radius.circular(20)
+                                        : const Radius.circular(0),
                                     bottomRight: appLang == 'ar'
-                                        ? Radius.circular(0)
-                                        : Radius.circular(20),
+                                        ? const Radius.circular(0)
+                                        : const Radius.circular(20),
                                     topRight: appLang == 'ar'
-                                        ? Radius.circular(0)
-                                        : Radius.circular(20)),
-                                color: Color(0xffF3F5F8),
+                                        ? const Radius.circular(0)
+                                        : const Radius.circular(20)),
+                                color: const Color(0xffF3F5F8),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(28.0),
