@@ -1,26 +1,30 @@
+import 'package:dg_certification_system/responsive.dart';
 import 'package:dg_certification_system/utils/constants.dart';
 import 'package:dg_certification_system/view/widgets/available_course_list.dart';
 import 'package:dg_certification_system/view/widgets/courses_grid_widget.dart';
 import 'package:dg_certification_system/view/widgets/header_widget.dart';
 import 'package:dg_certification_system/view/widgets/notifications_list_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const HeaderWidget(),
-        Expanded(
-            flex: 4,
+    return SingleChildScrollView(
+      child : Column(
+        children: [
+          const HeaderWidget(),
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
             child: Row(
-              children:  [
-                const Expanded(
-                  flex: 1,
-                  child: NotificationsListWidget(),
-                ),
+              children: [
+                if (!Responsive.isMobile(context))
+                  const Expanded(
+                    flex: 1,
+                    child: NotificationsListWidget(),
+                  ),
                 const SizedBox(width: defaultPadding),
                 Expanded(
                   flex: 2,
@@ -30,14 +34,18 @@ class DashboardScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: Theme.of(context).primaryColor,
                             borderRadius: BorderRadius.circular(10)),
-                        child:  SizedBox(
+                        child: SizedBox(
                           height: 37,
                           child: Row(
-                            children:  const [
+                            children: const [
                               SizedBox(width: defaultPadding),
-                              Icon(Icons.add_circle_outline_rounded,color: Colors.white,),
+                              Icon(
+                                Icons.add_circle_outline_rounded,
+                                color: Colors.white,
+                              ),
                               Padding(
-                                padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: defaultPadding),
                                 child: Text(
                                   "اضافة دورة تدريبية",
                                   style: TextStyle(
@@ -54,10 +62,12 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            )),
-        const SizedBox(height: defaultPadding),
-        Expanded(flex: 2, child: AvailableCourseList()),
-      ],
+            ),
+          ),
+          const SizedBox(height: defaultPadding),
+          AvailableCourseList(),
+        ],
+      ),
     );
   }
 }
