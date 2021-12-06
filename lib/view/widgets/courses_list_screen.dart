@@ -3,9 +3,9 @@ import 'package:dg_certification_system/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-
 import '../../main.dart';
 import '../../responsive.dart';
+import 'package:dg_certification_system/view/widgets/search_field_widget.dart';
 
 class CoursesListWidget extends StatelessWidget {
   const CoursesListWidget({
@@ -30,64 +30,69 @@ class CoursesListWidget extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Container(
-                  height: 37,
-                  child: const Center(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      child: Text(
-                        "الدورات التدريبية",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Container(
+                    height: 37,
+                    child: const Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Text(
+                          "الدورات التدريبية",
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Expanded(flex: 3, child: Container()),
-              const Expanded(flex: 2, child: SearchField())
-            ],
-          ),
-          const SizedBox(
-            height: defaultPadding,
-          ),
-          Container(
-            decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.circular(10)),
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    "الدورات",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                  Text("عدد المتدربين",
+                Expanded(flex: 3, child: Container()),
+                const Expanded(
+                  flex: 2,
+                  child: SearchField(),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: defaultPadding,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      "الدورات",
                       style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold)),
-                ],
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                    Text("عدد المتدربين",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold)),
+                  ],
+                ),
               ),
             ),
-          ),
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: demoRecentFiles.length,
-            itemBuilder: (context, index) =>
-                recentFileDataRow(demoRecentFiles[index], context),
-          ),
-        ],
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: demoRecentFiles.length,
+              itemBuilder: (context, index) =>
+                  recentFileDataRow(demoRecentFiles[index], context),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -106,7 +111,8 @@ Widget recentFileDataRow(RecentFile fileInfo, BuildContext context) {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: Theme.of(context).accentColor),
+                    shape: BoxShape.circle,
+                    color: Theme.of(context).accentColor),
               ),
               Padding(
                 padding:
@@ -122,41 +128,4 @@ Widget recentFileDataRow(RecentFile fileInfo, BuildContext context) {
       ],
     ),
   );
-}
-
-class SearchField extends StatelessWidget {
-  const SearchField({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 37,
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: "البحث",
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-          fillColor: Theme.of(context).accentColor,
-          filled: true,
-          border: const OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-          hintStyle: const TextStyle(color: Colors.white),
-          suffixIcon: InkWell(
-            onTap: () {},
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: SvgPicture.asset(
-                "assets/icon/Search.svg",
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }

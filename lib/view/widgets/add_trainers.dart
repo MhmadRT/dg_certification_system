@@ -9,7 +9,7 @@ class AddTrainersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(50),
+      padding: const EdgeInsets.all(25),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
         color: cardColor,
@@ -47,13 +47,13 @@ class AddTrainersWidget extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 50),
+          const SizedBox(height: 20),
           Row(
             children: const [
               Expanded(
                 child: Text('الاسم الكامل',style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20
+                    fontSize: 16
                 ),),
               ),
               Expanded(
@@ -61,16 +61,16 @@ class AddTrainersWidget extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: defaultPadding),
                   child: SizedBox(
-                    height: 50,
+                    height: 37,
                     child: TextField(
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Color(0xffF3F5F8),
                         border: OutlineInputBorder(
                           borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(10)),
                         ),
-
                       ),
                     ),
                   ),
@@ -84,7 +84,7 @@ class AddTrainersWidget extends StatelessWidget {
               Expanded(
                 child: Text('البريد الألكتروني',style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20
+                    fontSize: 16
                 ),),
               ),
               Expanded(
@@ -92,16 +92,16 @@ class AddTrainersWidget extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: defaultPadding),
                   child: SizedBox(
-                    height: 50,
+                    height: 37,
                     child: TextField(
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Color(0xffF3F5F8),
                         border: OutlineInputBorder(
                           borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(10)),
                         ),
-
                       ),
                     ),
                   ),
@@ -115,7 +115,7 @@ class AddTrainersWidget extends StatelessWidget {
               Expanded(
                 child: Text('رقم الهاتف',style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20
+                    fontSize: 16
                 ),),
               ),
               Expanded(
@@ -123,16 +123,16 @@ class AddTrainersWidget extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: defaultPadding),
                   child: SizedBox(
-                    height: 50,
+                    height: 37,
                     child: TextField(
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Color(0xffF3F5F8),
                         border: OutlineInputBorder(
                           borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(10)),
                         ),
-
                       ),
                     ),
                   ),

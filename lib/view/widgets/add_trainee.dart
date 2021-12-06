@@ -11,7 +11,7 @@ class AddTraineeWidget extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Container(
-        padding: const EdgeInsets.all(defaultPadding),
+        padding: const EdgeInsets.all(25),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
           color: cardColor,
@@ -48,13 +48,13 @@ class AddTraineeWidget extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 20),
             Row(
               children: const [
                 Expanded(
                   child: Text('الاسم الكامل',style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 20
+                      fontSize: 16
                   ),),
                 ),
                 Expanded(
@@ -62,16 +62,16 @@ class AddTraineeWidget extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: defaultPadding),
                     child: SizedBox(
-                      height: 50,
+                      height: 37,
                       child: TextField(
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: Color(0xffF3F5F8),
                           border: OutlineInputBorder(
                             borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(10)),
                           ),
-
                         ),
                       ),
                     ),
@@ -85,7 +85,7 @@ class AddTraineeWidget extends StatelessWidget {
                 Expanded(
                   child: Text('البريد الألكتروني',style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 20
+                      fontSize: 16
                   ),),
                 ),
                 Expanded(
@@ -93,16 +93,16 @@ class AddTraineeWidget extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: defaultPadding),
                     child: SizedBox(
-                      height: 50,
+                      height: 37,
                       child: TextField(
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: Color(0xffF3F5F8),
                           border: OutlineInputBorder(
                             borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(10)),
                           ),
-
                         ),
                       ),
                     ),
@@ -116,7 +116,7 @@ class AddTraineeWidget extends StatelessWidget {
                 Expanded(
                   child: Text('رقم الهاتف',style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 20
+                      fontSize: 16
                   ),),
                 ),
                 Expanded(
@@ -124,16 +124,16 @@ class AddTraineeWidget extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: defaultPadding),
                     child: SizedBox(
-                      height: 50,
+                      height: 37,
                       child: TextField(
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: Color(0xffF3F5F8),
                           border: OutlineInputBorder(
                             borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(10)),
                           ),
-
                         ),
                       ),
                     ),

@@ -1,4 +1,5 @@
 import 'package:dg_certification_system/controller/home_controller.dart';
+import 'package:dg_certification_system/main.dart';
 import 'package:dg_certification_system/view/widgets/menu_tap.dart';
 import 'package:flutter/material.dart';
 
@@ -74,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
                       )
                     : null,
                 body: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Directionality(
                     textDirection: TextDirection.rtl,
                     child: Row(
@@ -109,12 +110,38 @@ class _MainScreenState extends State<MainScreen> {
                                       },
                                     ),
                                   ),
+                                  Image.asset(
+                                    'assets/images/logo_white_text.png',
+                                    color: Theme.of(context).accentColor,
+                                    width: 100,
+                                  )
                                 ],
                               ),
                             ),
                           ),
                         Expanded(
-                          child: homeController!.screen[homeController!.index],
+                          child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: appLang == 'ar'
+                                        ? Radius.circular(20)
+                                        : Radius.circular(0),
+                                    topLeft: appLang == 'ar'
+                                        ? Radius.circular(20)
+                                        : Radius.circular(0),
+                                    bottomRight: appLang == 'ar'
+                                        ? Radius.circular(0)
+                                        : Radius.circular(20),
+                                    topRight: appLang == 'ar'
+                                        ? Radius.circular(0)
+                                        : Radius.circular(20)),
+                                color: Color(0xffF3F5F8),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(28.0),
+                                child: homeController!
+                                    .screen[homeController!.index],
+                              )),
                         ),
                       ],
                     ),

@@ -23,7 +23,6 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(height: 30),
                     Container(
                         width: 350,
-                        height: 410,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(39),
                           color: cardColor,
@@ -54,13 +53,53 @@ class LoginScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                            width: 350,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(39),
+                              color: cardColor,
+                              border: Border.all(
+                                  width: 0.7,
+                                  color:
+                                      const Color(0xff707070).withOpacity(0.4)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black12.withOpacity(0.04),
+                                  spreadRadius: 2,
+                                  blurRadius: 50,
+                                  offset: const Offset(
+                                      0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(30.0),
+                              child: login(context),
+                            )),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 100,
+                  ),
+                  Expanded(
                     child: Container(
                       width: MediaQuery.of(context).size.width * .3,
                       height: MediaQuery.of(context).size.height,
                       decoration: BoxDecoration(
                           color: Theme.of(context).accentColor,
-                          borderRadius: const BorderRadius.only(
-                              bottomRight: Radius.circular(70))),
+                          borderRadius: BorderRadius.only(
+                              bottomRight: appLang == 'ar'
+                                  ? const Radius.circular(0)
+                                  : const Radius.circular(70),
+                              bottomLeft: appLang == 'ar'
+                                  ? const Radius.circular(70)
+                                  : const Radius.circular(00)
+                          )),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -79,39 +118,6 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                  const SizedBox(width: 100,),
-                  Expanded(
-
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                            width: 350,
-                            height: 410,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(39),
-                              color: cardColor,
-                              border: Border.all(
-                                  width: 0.7,
-                                  color: const Color(0xff707070).withOpacity(0.4)),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black12.withOpacity(0.04),
-                                  spreadRadius: 2,
-                                  blurRadius: 50,
-                                  offset: const Offset(
-                                      0, 3), // changes position of shadow
-                                ),
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(30.0),
-                              child: login(context),
-                            )),
-                      ],
                     ),
                   ),
                 ],
@@ -154,6 +160,8 @@ class LoginScreen extends StatelessWidget {
                     return null;
                   }
                 },
+                textDirection: TextDirection.ltr,
+                textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                     suffixIcon: Icon(
                       Icons.email_outlined,
@@ -204,6 +212,16 @@ class LoginScreen extends StatelessWidget {
                   }
                 },
                 maxLines: 1,
+                textInputAction: TextInputAction.done,
+                onFieldSubmitted: (value) {
+                  if (_loginKey.currentState!.validate()) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MainScreen()));
+                  }
+                },
+                textDirection: TextDirection.ltr,
                 obscureText: true,
                 decoration: InputDecoration(
                     suffixIcon: Icon(

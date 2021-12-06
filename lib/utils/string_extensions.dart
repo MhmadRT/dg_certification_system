@@ -1,4 +1,5 @@
 
+import 'package:dg_certification_system/view/screens/certificates_theme_list.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 extension ColorExtension on String {
@@ -15,8 +16,8 @@ extension ColorExtension on String {
     switch (this) {
       // case 'DashboardScreen':
       //   return  DashboardScreen(key);
-      //   case 'CertificatesThemesList':
-      //   return  CertificatesThemesList(key,);
+        case 'CertificatesThemesList':
+        return  CertificatesThemesList();
       case 'FormScreen':
         return  Container();
       case 'UsersScreen':
