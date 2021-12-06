@@ -5,6 +5,7 @@ import 'package:dg_certification_system/utils/constants.dart';
 import 'package:dg_certification_system/view/screens/traine_course_list.dart';
 import 'package:dg_certification_system/view/widgets/xls_upload_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AvailableCourseList extends StatefulWidget {
   const AvailableCourseList({Key? key}) : super(key: key);
@@ -53,43 +54,84 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                       Expanded(
                         flex: 1,
                         child: Container(
-                            decoration:  BoxDecoration(
-                              color: Theme.of(context).primaryColor,
-                              borderRadius: BorderRadius.all(const Radius.circular(10)),
-                            ),
-
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius:
+                                BorderRadius.all(const Radius.circular(10)),
+                          ),
                           child: Center(
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text('الرقم',
+                              child: Text(
+                                'الرقم',
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
                           ),
                         ),
                       ),
-                      Expanded(child: Container(),),
                       Expanded(
-                          flex: 3,
-                          child: Container(
-                            decoration:  BoxDecoration(
-                              color: Theme.of(context).primaryColor,
-                              borderRadius: BorderRadius.all(const Radius.circular(10)),
-                            ),
-
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text('اسم الدورة',
-                                  style: TextStyle(color: Colors.white),
-                                ),
+                        child: Container(),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius:
+                                BorderRadius.all(const Radius.circular(10)),
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'اسم الدورة',
+                                style: TextStyle(color: Colors.white),
                               ),
                             ),
-                          ),),
-                      Expanded(child: Container(),),
-                      Expanded(flex: 2, child: Text(''),),
-                      Expanded(child: Container(),),
-                      Expanded(flex: 2, child: Text(''),),
+                          ),
+                        ),
+                      ),
+                      if (!Responsive.isMobile(context))
+                        Expanded(
+                          child: Container(),
+                        ),
+                      if (!Responsive.isMobile(context))
+                        Expanded(
+                          flex: 2,
+                          child: Text(''),
+                        ),
+                      if (!Responsive.isMobile(context))
+                        Expanded(
+                          child: Container(),
+                        ),
+                      if (!Responsive.isMobile(context))
+                        Expanded(
+                          flex: 2,
+                          child: Text(''),
+                        ),
+                      if (Responsive.isMobile(context))
+                        SizedBox(
+                          width: defaultPadding,
+                        ),
+                      if (Responsive.isMobile(context))
+                        Expanded(
+                            child: Container(
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius:
+                                BorderRadius.all(const Radius.circular(10)),
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'اجراءات',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        )),
                     ],
                   ),
                   const SizedBox(height: defaultPadding),
@@ -140,11 +182,11 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                 Expanded(
                                     flex: 1,
                                     child: Container(
-                                      decoration:  BoxDecoration(
+                                      decoration: BoxDecoration(
                                         color: Color(0xffF3F5F8),
-                                        borderRadius: BorderRadius.all(const Radius.circular(10)),
+                                        borderRadius: BorderRadius.all(
+                                            const Radius.circular(10)),
                                       ),
-
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Center(
@@ -156,86 +198,119 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                         ),
                                       ),
                                     )),
-                                Expanded(child: Container(),),
+                                Expanded(
+                                  child: Container(),
+                                ),
                                 Expanded(
                                   flex: 3,
-                                  child:
-                                    Container(
-                                      decoration:  BoxDecoration(
-                                        color: Color(0xffF3F5F8),
-                                        borderRadius: BorderRadius.all(const Radius.circular(10)),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Center(
-                                          child: Text(_coursesController!
-                                              .list[index].CourseName),
-                                        ),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Color(0xffF3F5F8),
+                                      borderRadius: BorderRadius.all(
+                                          const Radius.circular(10)),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Center(
+                                        child: Text(_coursesController!
+                                            .list[index].CourseName),
                                       ),
                                     ),
+                                  ),
                                 ),
-                                Expanded(child: Container(),),
-                                Expanded(
-                                    flex: 2,
-                                    child: SizedBox(
-                                        child: ElevatedButton.icon(
-                                            icon: Icon(Icons.add_circle_outline_rounded,color: Colors.white,),
-                                            label: Text("إضافة متدربين"),
-                                            style: TextButton.styleFrom(
-                                              backgroundColor: secondColor,
-                                            ),
-                                            onPressed: () {
-                                              xlsUpload(_coursesController!
-                                                      .list[index].id)
-                                                  .pickFile();
-                                            }))),
-                                Expanded(child: Container()),
-                                Expanded(
-                                    flex: 2,
-                                    child: SizedBox(
-                                        child: ElevatedButton.icon(
-                                            icon:Icon(Icons.add_circle_outline_rounded,color: Colors.white,),
-                                            label: Text("اصدار شهاده"),
-                                            style: TextButton.styleFrom(
-                                              backgroundColor: secondColor  ,
-                                            ),
-                                            onPressed: () {
-                                              Navigator.of(context).push(
-                                                PageRouteBuilder(
-                                                  opaque: false,
-                                                  barrierDismissible: true,
-                                                  fullscreenDialog: false,
-                                                  transitionDuration: Duration(
-                                                      milliseconds: 1000),
-                                                  pageBuilder: (BuildContext
-                                                          context,
-                                                      Animation<double>
-                                                          animation,
-                                                      Animation<double>
-                                                          secondaryAnimation) {
-                                                    return EmployeeList(
-                                                      courseId:
-                                                          _coursesController!
-                                                              .list[index].id,
-                                                    );
-                                                  },
-                                                  transitionsBuilder:
-                                                      (BuildContext context,
-                                                          Animation<double>
-                                                              animation,
-                                                          Animation<double>
-                                                              secondaryAnimation,
-                                                          Widget child) {
-                                                    return Align(
-                                                      child: FadeTransition(
-                                                        opacity: animation,
-                                                        child: child,
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
-                                              );
-                                            }))),
+                                if (!Responsive.isMobile(context))
+                                  Expanded(
+                                    child: Container(),
+                                  ),
+                                if (!Responsive.isMobile(context))
+                                  Expanded(
+                                      flex: 2,
+                                      child: SizedBox(
+                                          child: ElevatedButton.icon(
+                                              icon: Icon(
+                                                Icons
+                                                    .add_circle_outline_rounded,
+                                                color: Colors.white,
+                                              ),
+                                              label: Text("إضافة متدربين"),
+                                              style: TextButton.styleFrom(
+                                                backgroundColor: secondColor,
+                                              ),
+                                              onPressed: () {
+                                                xlsUpload(_coursesController!
+                                                        .list[index].id)
+                                                    .pickFile();
+                                              }))),
+                                if (!Responsive.isMobile(context))
+                                  Expanded(child: Container()),
+                                if (!Responsive.isMobile(context))
+                                  Expanded(
+                                      flex: 2,
+                                      child: SizedBox(
+                                          child: ElevatedButton.icon(
+                                              icon: Icon(
+                                                Icons
+                                                    .add_circle_outline_rounded,
+                                                color: Colors.white,
+                                              ),
+                                              label: Text("اصدار شهاده"),
+                                              style: TextButton.styleFrom(
+                                                backgroundColor: secondColor,
+                                              ),
+                                              onPressed: () {
+                                                Navigator.of(context).push(
+                                                  PageRouteBuilder(
+                                                    opaque: false,
+                                                    barrierDismissible: true,
+                                                    fullscreenDialog: false,
+                                                    transitionDuration:
+                                                        Duration(
+                                                            milliseconds: 1000),
+                                                    pageBuilder: (BuildContext
+                                                            context,
+                                                        Animation<double>
+                                                            animation,
+                                                        Animation<double>
+                                                            secondaryAnimation) {
+                                                      return EmployeeList(
+                                                        courseId:
+                                                            _coursesController!
+                                                                .list[index].id,
+                                                      );
+                                                    },
+                                                    transitionsBuilder:
+                                                        (BuildContext context,
+                                                            Animation<double>
+                                                                animation,
+                                                            Animation<double>
+                                                                secondaryAnimation,
+                                                            Widget child) {
+                                                      return Align(
+                                                        child: FadeTransition(
+                                                          opacity: animation,
+                                                          child: child,
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
+                                                );
+                                              }))),
+                                if (Responsive.isMobile(context))
+                                  if (Responsive.isMobile(context))
+                                    SizedBox(
+                                      width: defaultPadding,
+                                    ),
+                                if (Responsive.isMobile(context))
+                                  Expanded(
+                                      child: InkWell(
+                                        onTap: () {
+
+                                        },
+                                        child: SvgPicture.asset(
+                                    'assets/svg/options.svg',
+                                    height: 20,
+                                  ),
+                                      )),
                               ],
                             ),
                           ),
