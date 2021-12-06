@@ -1,3 +1,5 @@
+import 'package:dg_certification_system/utils/constants.dart';
+import 'package:dg_certification_system/view/widgets/header_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -30,8 +32,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
 
   String image = '';
   List<String> images = [
-    'assets/images/certificate2-01.jpg',
-    "assets/images/certificate-01.png"
+    'assets/images/certificate2-01.png',
   ];
   List<ItemModel> items = [];
 
@@ -40,41 +41,79 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
     height = (MediaQuery.of(context).size.height / 1.5);
     width = (height * 1.41);
     return Scaffold(
-      body: Flex(
-        direction:
-            Responsive.isMobile(context) ? Axis.vertical : Axis.horizontal,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Card(
-                  elevation: 10,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Container(
-                    width: width,
-                    height: height,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage('$image'), fit: BoxFit.fill)),
-                    child: Stack(children: listWidget),
+      body: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular( 12),
+              color: Color(0xffF3F5F8),),
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                children: [
+                  const HeaderWidget(isBack: true,),
+                  const SizedBox(height: defaultPadding),
+                  Row(
+                    children: [
+                      Text('تصميم شهادة',style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold
+                      ),),
+                    ],
                   ),
-                ),
+                  const SizedBox(height: defaultPadding),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: Colors.grey.shade50
+                      ),
+                      child: Flex(
+                        direction:
+                        Responsive.isMobile(context) ? Axis.vertical : Axis.horizontal,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          add(),
+                          Column(
+                            children: [
+                              Card(
+                                margin: EdgeInsets.all(0),
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(25),
+                                    child: Container(
+                                      width: width,
+                                      height: height,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                          image: DecorationImage(
+                                              image: AssetImage('$image'), fit: BoxFit.fill)),
+                                      child: Stack(children: listWidget),
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                            ],
+                          ),
+                          // add()
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              MaterialButton(
-                onPressed: () {
-                  items.clear();
-                  listWidget.forEach((element) {});
-                },
-                child: Text('حفظ'),
-              )
-            ],
+            ),
           ),
-          add()
-        ],
+        ),
       ),
     );
   }
@@ -89,10 +128,8 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
   add() {
     return Expanded(
         flex: 1,
-        child: Card(
-          elevation: 10,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        child: Container(
+          height: height,
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Directionality(
@@ -118,27 +155,27 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                           disabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide:
-                                  const BorderSide(color: Colors.transparent)),
+                              const BorderSide(color: Colors.transparent)),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide:
-                                  const BorderSide(color: Colors.transparent)),
+                              const BorderSide(color: Colors.transparent)),
                           errorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide:
-                                  const BorderSide(color: Colors.transparent)),
+                              const BorderSide(color: Colors.transparent)),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide:
-                                  const BorderSide(color: Colors.transparent)),
+                              const BorderSide(color: Colors.transparent)),
                           focusedErrorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide:
-                                  const BorderSide(color: Colors.transparent)),
+                              const BorderSide(color: Colors.transparent)),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                               borderSide:
-                                  const BorderSide(color: Colors.transparent)),
+                              const BorderSide(color: Colors.transparent)),
                           hintText: 'إضافة محتوى',
                           hintStyle: TextStyle(
                               color: Theme.of(context).accentColor,
@@ -682,8 +719,8 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
               textAlign: itemModel.align == 0
                   ? TextAlign.left
                   : itemModel.align == 1
-                      ? TextAlign.right
-                      : TextAlign.center,
+                  ? TextAlign.right
+                  : TextAlign.center,
               style: TextStyle(
                 fontSize: itemModel.textSize,
                 color: Color(itemModel.color),

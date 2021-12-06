@@ -6,6 +6,7 @@ import 'package:dg_certification_system/model/trainee.dart';
 import 'package:dg_certification_system/utils/constants.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../main.dart';
 import 'add_trainee.dart';
@@ -47,9 +48,9 @@ class AddCourse extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(defaultPadding),
+      padding: const EdgeInsets.all(25),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(defaultPadding),
+        borderRadius: BorderRadius.circular(25),
         color: cardColor,
         border: Border.all(
             width: 0.7, color: const Color(0xff707070).withOpacity(0.1)),
@@ -62,8 +63,7 @@ class AddCourse extends StatelessWidget {
           ),
         ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+      child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -81,7 +81,8 @@ class AddCourse extends StatelessWidget {
                         child: Text(
                           "اضافة دورة تدريبية",
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -95,7 +96,7 @@ class AddCourse extends StatelessWidget {
             ),
 
             const SizedBox(
-              height: 50,
+              height: 20,
             ),
             const SizedBox(height: defaultPadding),
             Row(
@@ -104,7 +105,8 @@ class AddCourse extends StatelessWidget {
                   flex: 1,
                   child: Text(
                     'اسم الدورة',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ),
                 Expanded(
@@ -112,14 +114,15 @@ class AddCourse extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: defaultPadding),
                     child: SizedBox(
-                      height: 50,
+                      height: 37,
                       child: TextField(
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: Color(0xffF3F5F8),
                           border: OutlineInputBorder(
                             borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10)),
                           ),
                         ),
                       ),
@@ -135,7 +138,8 @@ class AddCourse extends StatelessWidget {
                   flex: 1,
                   child: Text(
                     'عدد المتدربين',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                 ),
                 Expanded(
@@ -143,14 +147,81 @@ class AddCourse extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: defaultPadding),
                     child: SizedBox(
-                      height: 50,
+                      height: 37,
                       child: TextField(
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: Color(0xffF3F5F8),
                           border: OutlineInputBorder(
                             borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10)),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(height: defaultPadding),
+            Row(
+              children: const [
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    'تاريخ البدء',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+                    child: SizedBox(
+                      height: 37,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xffF3F5F8),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10)),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(height: defaultPadding),
+            Row(
+              children: const [
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    'تاريخ الانتهاء',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+                    child: SizedBox(
+                      height: 37,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Color(0xffF3F5F8),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10)),
                           ),
                         ),
                       ),
@@ -161,10 +232,10 @@ class AddCourse extends StatelessWidget {
             ),
             const SizedBox(height: defaultPadding),
             Container(
-              padding: const EdgeInsets.all(50),
+              padding: const EdgeInsets.all(defaultPadding*2),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                color: Theme.of(context).scaffoldBackgroundColor,
+                color: Color(0xffF3F5F8),
                 border: Border.all(
                     width: 0.7,
                     color: const Color(0xff707070).withOpacity(0.1)),
@@ -189,24 +260,24 @@ class AddCourse extends StatelessWidget {
                         height: 150,
                         decoration: BoxDecoration(
                           color: Theme.of(context).primaryColor,
-                          borderRadius: BorderRadius.circular(25),
+                          borderRadius: BorderRadius.circular(35),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Icon(
-                                Icons.file_copy,
+                            children: [
+                              SvgPicture.asset(
+                                'assets/svg/file_text.svg',
+                                height: 50,
                                 color: Colors.white,
-                                size: 50,
                               ),
                               SizedBox(
                                 height: 10,
                               ),
                               Flexible(
                                 child: Text(
-                                  "اضافة مجموعة\nمن المتدربين\nعن طريق\nملف اكسل",
+                                  "اضافة مجموعة من المتدربين عن طريق ملف اكسل",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Colors.white,
@@ -244,7 +315,8 @@ class AddCourse extends StatelessWidget {
                                       child: Container(
                                         decoration: BoxDecoration(
                                           shape: BoxShape.circle,
-                                          color: Theme.of(context).primaryColor,
+                                          color:
+                                              Theme.of(context).primaryColor,
                                         ),
                                         child: const Padding(
                                           padding: EdgeInsets.all(10.0),
@@ -264,7 +336,7 @@ class AddCourse extends StatelessWidget {
                         height: 150,
                         decoration: BoxDecoration(
                           color: Theme.of(context).primaryColor,
-                          borderRadius: BorderRadius.circular(25),
+                          borderRadius: BorderRadius.circular(35),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

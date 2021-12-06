@@ -1,6 +1,9 @@
 import 'package:dg_certification_system/controller/state_control.dart';
 import 'package:dg_certification_system/model/menu_tap_model.dart';
+import 'package:dg_certification_system/view/screens/certificates_theme_list.dart';
 import 'package:dg_certification_system/view/screens/courses_screen.dart';
+import 'package:dg_certification_system/view/screens/dashboard_screen.dart';
+import 'package:dg_certification_system/view/screens/settings_screen.dart';
 import 'package:dg_certification_system/view/screens/trainees_screen.dart';
 import 'package:dg_certification_system/view/screens/trainers_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,11 +12,12 @@ class HomeController extends StateControl {
   BuildContext context;
   int index;
   List<Widget> screen = const [
-    Text('1'),
+    DashboardScreen(),
     CoursesScreen(),
     TrainersScreen(),
     TraineesScreen(),
-    Text('4'),
+    CertificatesThemesList(),
+    SettingsScreen(),
   ];
   List<MenuTapModel>? taps;
 
@@ -54,11 +58,18 @@ class HomeController extends StateControl {
         clicked: index == 3,
       ),
       MenuTapModel(
-        icon: 'technician',
-        title: 'الإعدادات',
+        icon: 'owners',
+        title: 'الشهادات',
         id: 4,
         small: false,
         clicked: index == 4,
+      ),
+      MenuTapModel(
+        icon: 'technician',
+        title: 'الإعدادات',
+        id: 5,
+        small: false,
+        clicked: index == 5,
       ),
     ];
     super.init();

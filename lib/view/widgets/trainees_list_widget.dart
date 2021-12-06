@@ -32,65 +32,67 @@ class TraineesListWidget extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    color: Theme
-                        .of(context)
-                        .primaryColor,
-                    borderRadius: BorderRadius.circular(10)),
-                child: const SizedBox(
-                  height: 37,
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      child: Text(
-                        "المدربين",
-                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: Theme
+                          .of(context)
+                          .primaryColor,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: const SizedBox(
+                    height: 37,
+                    child: Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Text(
+                          "المدربين",
+                          style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Expanded(flex: 3, child: Container()),
-              const Expanded(flex: 2, child: SearchField())
-            ],
-          ),
-          const SizedBox(height: defaultPadding,),
-          Container(
-            decoration: BoxDecoration(
-                color: Theme
-                    .of(context)
-                    .primaryColor,
-                borderRadius: BorderRadius.circular(10)
+                Expanded(flex: 3, child: Container()),
+                const Expanded(flex: 2, child: SearchField())
+              ],
             ),
+            const SizedBox(height: defaultPadding,),
+            Container(
+              decoration: BoxDecoration(
+                  color: Theme
+                      .of(context)
+                      .primaryColor,
+                  borderRadius: BorderRadius.circular(10)
+              ),
 
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                children: const [
-                  Expanded(flex: 2,
-                      child: Text("الأسم الكامل",
-                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)),
-                  Expanded(flex: 2,
-                      child: Text(
-                          "ألبريد ألألكتروني", style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold))),
-                  Expanded(flex: 1,
-                      child: Text(
-                          "رقم الهاتف", style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold))),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  children: const [
+                    Expanded(flex: 2,
+                        child: Text("الأسم الكامل",
+                          style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),)),
+                    Expanded(flex: 2,
+                        child: Text(
+                            "ألبريد ألألكتروني", style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold))),
+                    Expanded(flex: 1,
+                        child: Text(
+                            "رقم الهاتف", style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold))),
+                  ],
+                ),
               ),
+            ), ListView.builder(
+              shrinkWrap: true,
+              itemCount: demoRecentFiles.length,
+              itemBuilder: (context, index) =>recentFileDataRow(demoRecentFiles[index],context),
             ),
-          ), ListView.builder(
-            shrinkWrap: true,
-            itemCount: demoRecentFiles.length,
-            itemBuilder: (context, index) =>recentFileDataRow(demoRecentFiles[index],context),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
