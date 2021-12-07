@@ -14,12 +14,12 @@ class TraineesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HeaderWidget(),
+        const HeaderWidget(),
         Expanded(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
+              const Expanded(
                 flex: 3,
                 child:TraineesListWidget(),
               ),

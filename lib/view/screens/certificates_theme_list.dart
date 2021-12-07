@@ -19,55 +19,47 @@ class _CertificatesThemesListState extends State<CertificatesThemesList> {
     return Column(
       children: [
         const HeaderWidget(),
-        Expanded(
+        InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const DragAndDropScreen()));
+          },
           child: Row(
             children: [
-              Expanded(
-                child: Column(
-                  children: [
-
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const DragAndDropScreen()));
-                      },
-                      child: Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor,
-                                borderRadius: BorderRadius.circular(10)),
-                            child:  SizedBox(
-                              height: 37,
-                              child: Row(
-                                children:  const [
-                                  SizedBox(width: defaultPadding),
-                                  Icon(Icons.add_circle_outline_rounded,color: Colors.white,),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: defaultPadding),
-                                    child: Text(
-                                      "اضف سمة جديدة",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
+              Container(
+                decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(10)),
+                child: SizedBox(
+                  height: 37,
+                  child: Row(
+                    children: const [
+                      SizedBox(width: defaultPadding),
+                      Icon(
+                        Icons.add_circle_outline_rounded,
+                        color: Colors.white,
                       ),
-                    ),
-                    SizedBox(height: defaultPadding),
-                    Expanded(child: CertificateThemeWidget())
-                  ],
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: defaultPadding),
+                        child: Text(
+                          "اضف سمة جديدة",
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
           ),
+        ),
+        const SizedBox(height: defaultPadding),
+        const Expanded(
+          child: CertificateThemeWidget(),
         )
       ],
     );

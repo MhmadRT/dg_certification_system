@@ -9,25 +9,22 @@ class CertificateThemeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      controller: ScrollController(),
       shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
 
       ),
-      itemBuilder: (_, index) => SizedBox(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Container(
-                color: Colors.white,
-                child: Image.network(
-                 'https://www.pikpng.com/pngl/b/180-1809582_share-this-article-certificate-transparent-background-clipart-png.png',
-                  fit: BoxFit.cover,
-                  color: primaryColor,
-                ),
-              ),
+      itemBuilder: (_, index) => Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Container(
+            color: Colors.white,
+            child: Image.network(
+             'https://www.pikpng.com/pngl/b/180-1809582_share-this-article-certificate-transparent-background-clipart-png.png',
+              fit: BoxFit.cover,
+              color: primaryColor,
             ),
           ),
         ),

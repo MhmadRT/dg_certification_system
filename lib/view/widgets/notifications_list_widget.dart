@@ -17,6 +17,7 @@ class NotificationsListWidget extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: SingleChildScrollView(
+        controller: ScrollController(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -29,10 +29,10 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
         stream: _coursesController!.streamController.stream,
         builder: (context, snapshot) {
           if (snapshot.connectionState != ConnectionState.active) {
-            return SizedBox(
+            return const SizedBox(
                 height: 30,
                 width: 30,
-                child: FittedBox(child: const CircularProgressIndicator()));
+                child: FittedBox(child: CircularProgressIndicator()));
           } else {
             return Container(
               padding: const EdgeInsets.all(defaultPadding),
@@ -57,11 +57,11 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                           decoration: BoxDecoration(
                             color: Theme.of(context).primaryColor,
                             borderRadius:
-                                BorderRadius.all(const Radius.circular(10)),
+                                const BorderRadius.all(Radius.circular(10)),
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(8.0),
                               child: Text(
                                 'الرقم',
                                 style: TextStyle(color: Colors.white),
@@ -79,11 +79,11 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                           decoration: BoxDecoration(
                             color: Theme.of(context).primaryColor,
                             borderRadius:
-                                BorderRadius.all(const Radius.circular(10)),
+                                const BorderRadius.all(Radius.circular(10)),
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(8.0),
                               child: Text(
                                 'اسم الدورة',
                                 style: TextStyle(color: Colors.white),
@@ -97,7 +97,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                           child: Container(),
                         ),
                       if (!Responsive.isMobile(context))
-                        Expanded(
+                        const Expanded(
                           flex: 2,
                           child: Text(''),
                         ),
@@ -106,12 +106,12 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                           child: Container(),
                         ),
                       if (!Responsive.isMobile(context))
-                        Expanded(
+                        const Expanded(
                           flex: 2,
                           child: Text(''),
                         ),
                       if (Responsive.isMobile(context))
-                        SizedBox(
+                        const SizedBox(
                           width: defaultPadding,
                         ),
                       if (Responsive.isMobile(context))
@@ -120,11 +120,11 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                           decoration: BoxDecoration(
                             color: Theme.of(context).primaryColor,
                             borderRadius:
-                                BorderRadius.all(const Radius.circular(10)),
+                                const BorderRadius.all(Radius.circular(10)),
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(8.0),
                               child: Text(
                                 'اجراءات',
                                 style: TextStyle(color: Colors.white),
@@ -138,6 +138,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                   if (_coursesController!.list.isNotEmpty)
                     ListView.separated(
                       shrinkWrap: true,
+                      controller: ScrollController(),
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: _coursesController!.list.length,
                       separatorBuilder: (BuildContext context, int index) =>
@@ -153,7 +154,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                 barrierDismissible: true,
                                 fullscreenDialog: false,
                                 transitionDuration:
-                                    Duration(milliseconds: 1000),
+                                    const Duration(milliseconds: 1000),
                                 pageBuilder: (BuildContext context,
                                     Animation<double> animation,
                                     Animation<double> secondaryAnimation) {
@@ -182,10 +183,10 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                 Expanded(
                                     flex: 1,
                                     child: Container(
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         color: Color(0xffF3F5F8),
                                         borderRadius: BorderRadius.all(
-                                            const Radius.circular(10)),
+                                            Radius.circular(10)),
                                       ),
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
@@ -204,10 +205,10 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                 Expanded(
                                   flex: 3,
                                   child: Container(
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Color(0xffF3F5F8),
                                       borderRadius: BorderRadius.all(
-                                          const Radius.circular(10)),
+                                          Radius.circular(10)),
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
@@ -227,12 +228,12 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                       flex: 2,
                                       child: SizedBox(
                                           child: ElevatedButton.icon(
-                                              icon: Icon(
+                                              icon: const Icon(
                                                 Icons
                                                     .add_circle_outline_rounded,
                                                 color: Colors.white,
                                               ),
-                                              label: Text("إضافة متدربين"),
+                                              label: const Text("إضافة متدربين"),
                                               style: TextButton.styleFrom(
                                                 backgroundColor: secondColor,
                                               ),
@@ -248,12 +249,12 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                       flex: 2,
                                       child: SizedBox(
                                           child: ElevatedButton.icon(
-                                              icon: Icon(
+                                              icon: const Icon(
                                                 Icons
                                                     .add_circle_outline_rounded,
                                                 color: Colors.white,
                                               ),
-                                              label: Text("اصدار شهاده"),
+                                              label: const Text("اصدار شهاده"),
                                               style: TextButton.styleFrom(
                                                 backgroundColor: secondColor,
                                               ),
@@ -264,7 +265,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                                     barrierDismissible: true,
                                                     fullscreenDialog: false,
                                                     transitionDuration:
-                                                        Duration(
+                                                        const Duration(
                                                             milliseconds: 1000),
                                                     pageBuilder: (BuildContext
                                                             context,
@@ -297,7 +298,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                               }))),
                                 if (Responsive.isMobile(context))
                                   if (Responsive.isMobile(context))
-                                    SizedBox(
+                                    const SizedBox(
                                       width: defaultPadding,
                                     ),
                                 if (Responsive.isMobile(context))

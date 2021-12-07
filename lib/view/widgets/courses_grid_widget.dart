@@ -8,6 +8,8 @@ class CoursesGridWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
       return GridView.builder(
+
+        controller: ScrollController(),
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,

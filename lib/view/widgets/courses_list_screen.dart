@@ -31,6 +31,7 @@ class CoursesListWidget extends StatelessWidget {
         ],
       ),
       child: SingleChildScrollView(
+        controller: ScrollController(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

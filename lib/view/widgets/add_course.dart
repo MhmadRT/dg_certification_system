@@ -64,6 +64,7 @@ class AddCourse extends StatelessWidget {
         ],
       ),
       child: SingleChildScrollView(
+        controller: ScrollController(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

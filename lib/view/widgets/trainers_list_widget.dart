@@ -1,8 +1,7 @@
 import 'package:dg_certification_system/model/recent_file.dart';
 import 'package:dg_certification_system/utils/constants.dart';
+import 'package:dg_certification_system/view/widgets/search_field_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../main.dart';
 import '../../responsive.dart';
 
@@ -30,6 +29,7 @@ class TrainersListWidget extends StatelessWidget {
         ],
       ),
       child: SingleChildScrollView(
+        controller: ScrollController(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -133,41 +133,4 @@ Widget recentFileDataRow(RecentFile fileInfo, BuildContext context) {
       ],
     ),
   );
-}
-
-class SearchField extends StatelessWidget {
-  const SearchField({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 37,
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: "البحث",
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-          fillColor: Theme.of(context).accentColor,
-          filled: true,
-          border: const OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-          hintStyle: const TextStyle(color: Colors.white),
-          suffixIcon: InkWell(
-            onTap: () {},
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: SvgPicture.asset(
-                "assets/icon/Search.svg",
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }

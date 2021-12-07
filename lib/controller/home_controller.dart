@@ -11,13 +11,13 @@ import 'package:flutter/cupertino.dart';
 class HomeController extends StateControl {
   BuildContext context;
   int index;
-  List<Widget> screen = const [
+  List<Widget> screen =  [
     DashboardScreen(),
-    CoursesScreen(),
-    TrainersScreen(),
-    TraineesScreen(),
-    CertificatesThemesList(),
-    SettingsScreen(),
+    const CoursesScreen(),
+    const TrainersScreen(),
+    const TraineesScreen(),
+    const CertificatesThemesList(),
+    const SettingsScreen(),
   ];
   List<MenuTapModel>? taps;
 

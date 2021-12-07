@@ -5,14 +5,14 @@ import 'package:dg_certification_system/view/widgets/courses_grid_widget.dart';
 import 'package:dg_certification_system/view/widgets/header_widget.dart';
 import 'package:dg_certification_system/view/widgets/notifications_list_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-
 class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({Key? key}) : super(key: key);
+   DashboardScreen({Key? key}) : super(key: key);
 
+  final ScrollController _scrollController=ScrollController();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      controller: _scrollController,
       child : Column(
         children: [
           const HeaderWidget(),
@@ -30,37 +30,38 @@ class DashboardScreen extends StatelessWidget {
                   flex: 2,
                   child: Column(
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: SizedBox(
-                          height: 37,
-                          child: Row(
-                            children: const [
-                              SizedBox(width: defaultPadding),
-                              Icon(
-                                Icons.add_circle_outline_rounded,
-                                color: Colors.white,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: defaultPadding),
-                                child: Text(
-                                  "اضافة دورة تدريبية",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).primaryColor,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: SizedBox(
+                            height: 37,
+                            child: Row(
+                              children: const [
+                                SizedBox(width: defaultPadding),
+                                Icon(
+                                  Icons.add_circle_outline_rounded,
+                                  color: Colors.white,
                                 ),
-                              ),
-                            ],
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: defaultPadding),
+                                  child: Text(
+                                    "اضافة دورة تدريبية",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
                       const Expanded(child: CoursesGridWidget())
                     ],
                   ),
                 ),
+               
               ],
             ),
           ),
@@ -70,4 +71,7 @@ class DashboardScreen extends StatelessWidget {
       ),
     );
   }
+
+
+
 }

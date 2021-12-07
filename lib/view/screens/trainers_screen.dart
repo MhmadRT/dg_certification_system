@@ -14,14 +14,14 @@ class TrainersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HeaderWidget(),
+        const HeaderWidget(),
         Expanded(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
+              const Expanded(
                 flex: 3,
-                child: const TrainersListWidget()
+                child: TrainersListWidget()
               ),
               if (!Responsive.isMobile(context))
                 const SizedBox(width: defaultPadding),

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dg_certification_system/utils/constants.dart';
 import 'package:dg_certification_system/view/widgets/header_widget.dart';
 import 'package:file_picker/file_picker.dart';
@@ -40,6 +42,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(MediaQuery.of(context).size.width);
     if (landScape) {
       width = (MediaQuery.of(context).size.height / 1.5);
       height = (width * 1.41);
@@ -54,63 +57,78 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: const Color(0xffF3F5F8),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: Column(
-                children: [
-                  const HeaderWidget(
-                    isBack: true,
-                  ),
-                  const SizedBox(height: defaultPadding),
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: Colors.white),
-                      child: Flex(
-                        direction: Responsive.isMobile(context)
-                            ? Axis.vertical
-                            : Axis.horizontal,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          add(),
-                          Column(
-                            children: [
-                              Container(
-                                width: width,
-                                height: height,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.1),
-                                        spreadRadius: 5,
-                                        blurRadius: 7,
-                                        offset: const Offset(
-                                            0, 3), // changes position of shadow
-                                      ),
-                                    ],
-                                    borderRadius: BorderRadius.circular(25),
-                                    image: DecorationImage(
-                                        image: AssetImage('$image'),
-                                        fit: BoxFit.fill)),
-                                child: Stack(children: listWidget),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: const Color(0xffF3F5F8),
               ),
-            ),
-          ),
+              child: Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: Column(
+                  children: [
+                    const HeaderWidget(
+                      isBack: true,
+                    ),
+                    const SizedBox(height: defaultPadding),
+                    Expanded(
+                      child: MediaQuery.of(context).size.width > 1200
+                          ? Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: Colors.white),
+                              child: Flex(
+                                direction: Responsive.isMobile(context)
+                                    ? Axis.vertical
+                                    : Axis.horizontal,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  add(),
+                                  SingleChildScrollView(
+                                    controller: ScrollController(),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          width: width,
+                                          height: height,
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(0.1),
+                                                  spreadRadius: 5,
+                                                  blurRadius: 7,
+                                                  offset: const Offset(0,
+                                                      3), // changes position of shadow
+                                                ),
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                              image: DecorationImage(
+                                                  image: AssetImage('$image'),
+                                                  onError:
+                                                      (exception, stackTrace) =>
+                                                          Container(
+                                                            color: Colors.white,
+                                                          ),
+                                                  fit: BoxFit.fill)),
+                                          child: Stack(children: listWidget),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : const Center(
+                              child: Text(
+                                  'هذه الصفحة تدعم الشاشات التي عرضها فوق 1200 بيكسل \n يرجى تكبير الصفحة !',
+                              textAlign: TextAlign.center,),
+                            ),
+                    ),
+                  ],
+                ),
+              )),
         ),
       ),
     );
@@ -123,8 +141,10 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
     "DATE"
   ];
   bool landScape = false;
+
   add() {
-    TextStyle titleStyle= TextStyle(fontWeight: FontWeight.bold,color: Theme.of(context).accentColor);
+    TextStyle titleStyle = TextStyle(
+        fontWeight: FontWeight.bold, color: Theme.of(context).accentColor);
     return Expanded(
         flex: 1,
         child: SizedBox(
@@ -139,10 +159,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 15.0),
                     child: Row(
                       children: [
-                        Text(
-                          'شكل العرض',
-                          style: titleStyle
-                        ),
+                        Text('شكل العرض', style: titleStyle),
                         const SizedBox(
                           width: 10,
                         ),
@@ -246,12 +263,11 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                           border:
                               OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Theme.of(context).accentColor.withOpacity(0.5), width: 1)),
                           hintText: 'إضافة محتوى',
-                          hintStyle:
-                          TextStyle(color: Theme.of(context).accentColor.withOpacity(0.5), fontWeight: FontWeight.bold))),
+                          hintStyle: TextStyle(color: Theme.of(context).accentColor.withOpacity(0.5), fontWeight: FontWeight.bold))),
                   const SizedBox(
                     height: 10,
                   ),
-                   Text('اضافة الي النص',style: titleStyle),
+                  Text('اضافة الي النص', style: titleStyle),
                   const SizedBox(
                     height: 5,
                   ),
@@ -302,7 +318,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                               Text('الخط',style: titleStyle),
+                              Text('الخط', style: titleStyle),
                               const SizedBox(
                                 height: 5,
                               ),
@@ -377,7 +393,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                               Text('المحادات',style: titleStyle),
+                              Text('المحادات', style: titleStyle),
                               const SizedBox(
                                 height: 5,
                               ),
@@ -488,7 +504,10 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                               Text('اللون',style: titleStyle,),
+                              Text(
+                                'اللون',
+                                style: titleStyle,
+                              ),
                               const SizedBox(
                                 height: 5,
                               ),
@@ -709,10 +728,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 8.0, horizontal: 15),
-                                child: Text(
-                                  'حجم الخط',
-                                  style:titleStyle
-                                ),
+                                child: Text('حجم الخط', style: titleStyle),
                               ),
                               decoration: BoxDecoration(
                                   border: resizeIndex == 0
@@ -744,10 +760,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 8.0, horizontal: 15),
-                                child: Text(
-                                  'محيط الخط',
-                                  style: titleStyle
-                                ),
+                                child: Text('محيط الخط', style: titleStyle),
                               ),
                               decoration: BoxDecoration(
                                   border: resizeIndex == 1
@@ -779,10 +792,8 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 8.0, horizontal: 15),
-                                child: Text(
-                                  'حجم المكون الإضافي',
-                                  style: titleStyle
-                                ),
+                                child: Text('حجم المكون الإضافي',
+                                    style: titleStyle),
                               ),
                               decoration: BoxDecoration(
                                   border: resizeIndex == 2
@@ -795,7 +806,6 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                       : null),
                             ),
                           ),
-
                         ],
                       ),
                       const SizedBox(
@@ -831,7 +841,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       Text('مكونات اخرى انقر للإضافة',style:titleStyle),
+                      Text('مكونات اخرى انقر للإضافة', style: titleStyle),
                       const SizedBox(
                         height: 10,
                       ),
@@ -870,7 +880,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                     setState(() {});
                                   },
                                   child: SvgPicture.asset(
-                                    'assets/svg/qr.svg',
+                                    'assets/svg/upload_photo.svg',
                                     color: Theme.of(context).accentColor,
                                     width: qrSized,
                                     height: qrSized,
@@ -890,7 +900,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                   pickFile();
                                 },
                                 child: SvgPicture.asset(
-                                  'assets/svg/upload_photo.svg',
+                                  'assets/svg/qr.svg',
                                   color: Theme.of(context).accentColor,
                                   width: qrSized,
                                   height: qrSized,
@@ -1011,7 +1021,10 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                   Text('اختر الخلفية',style: titleStyle,),
+                  Text(
+                    'اختر الخلفية',
+                    style: titleStyle,
+                  ),
                   const SizedBox(
                     height: 5,
                   ),
@@ -1027,7 +1040,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                             image = images[index];
                             setState(() {});
                           },
-                          child: Image.network(
+                          child: Image.asset(
                             images[index],
                             width: 100,
                           ),

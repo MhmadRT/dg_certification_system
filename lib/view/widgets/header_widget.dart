@@ -1,5 +1,6 @@
 import 'dart:html';
 
+import 'package:dg_certification_system/responsive.dart';
 import 'package:dg_certification_system/utils/constants.dart';
 import 'package:dg_certification_system/view/widgets/search_field_widget.dart';
 import 'package:dg_certification_system/view/widgets/user_card_widget.dart';
@@ -24,18 +25,19 @@ class HeaderWidget extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: secondaryColor
                   ),
-                    child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                    child: const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Icon(
                     Icons.navigate_before,
                     color: Colors.white,
                   ),
                 )),
               ),
+            if(!Responsive.isMobile(context))
             Expanded(
               flex: 3,
               child: Container(),
@@ -43,10 +45,12 @@ class HeaderWidget extends StatelessWidget {
             Expanded(
               flex: 4,
               child: Row(
-                children: [
-                  Expanded(child: SearchField()),
+                children:[
+                  if(Responsive.isMobile(context))
                   const SizedBox(width: defaultPadding),
-                  UserCard(),
+                  const Expanded(child: SearchField()),
+                  const SizedBox(width: defaultPadding),
+                  const UserCard(),
                 ],
               ),
             ),
