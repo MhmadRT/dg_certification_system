@@ -24,6 +24,17 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
   FontWeight isBold = FontWeight.normal;
   TextAlign textAlign = TextAlign.center;
   List<DragWidget> listWidget = [];
+  final  ScrollController _horizontalScroll= ScrollController();
+  final  ScrollController _verticalScroll= ScrollController();
+
+
+  @override
+  void dispose() {
+    if(mounted){
+      _horizontalScroll.dispose();
+      _verticalScroll.dispose();
+    }
+  }
 
   Color color = Colors.black;
 
@@ -43,6 +54,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
   @override
   Widget build(BuildContext context) {
     print(MediaQuery.of(context).size.width);
+    print(MediaQuery.of(context).size.height);
     if (landScape) {
       width = (MediaQuery.of(context).size.height / 1.5);
       height = (width * 1.41);
@@ -52,83 +64,97 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
     }
 
     return Scaffold(
-      body: Directionality(
-        textDirection: TextDirection.rtl,
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: const Color(0xffF3F5F8),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(40.0),
-                child: Column(
-                  children: [
-                    const HeaderWidget(
-                      isBack: true,
-                    ),
-                    const SizedBox(height: defaultPadding),
-                    Expanded(
-                      child: MediaQuery.of(context).size.width > 1200
-                          ? Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  color: Colors.white),
-                              child: Flex(
-                                direction: Responsive.isMobile(context)
-                                    ? Axis.vertical
-                                    : Axis.horizontal,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  add(),
-                                  SingleChildScrollView(
-                                    controller: ScrollController(),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          width: width,
-                                          height: height,
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Colors.grey
-                                                      .withOpacity(0.1),
-                                                  spreadRadius: 5,
-                                                  blurRadius: 7,
-                                                  offset: const Offset(0,
-                                                      3), // changes position of shadow
-                                                ),
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                              image: DecorationImage(
-                                                  image: AssetImage('$image'),
-                                                  onError:
-                                                      (exception, stackTrace) =>
-                                                          Container(
-                                                            color: Colors.white,
-                                                          ),
-                                                  fit: BoxFit.fill)),
-                                          child: Stack(children: listWidget),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
+      body: Scrollbar(
+        controller: _horizontalScroll,
+        isAlwaysShown: true,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          controller:_horizontalScroll,
+          child: Scrollbar(
+            isAlwaysShown: true,
+            controller: _verticalScroll,
+            child: SingleChildScrollView(
+              controller: _verticalScroll,
+              child: SizedBox(
+                height: 1000,
+                width: 2000,
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: const Color(0xffF3F5F8),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(40.0),
+                          child: Column(
+                            children: [
+                              const HeaderWidget(
+                                isBack: true,
                               ),
-                            )
-                          : const Center(
-                              child: Text(
-                                  'هذه الصفحة تدعم الشاشات التي عرضها فوق 1200 بيكسل \n يرجى تكبير الصفحة !',
-                              textAlign: TextAlign.center,),
-                            ),
-                    ),
-                  ],
+                              const SizedBox(height: defaultPadding),
+                              Expanded(
+                                child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(25),
+                                            color: Colors.white),
+                                        child: Flex(
+                                          direction: Responsive.isMobile(context)
+                                              ? Axis.vertical
+                                              : Axis.horizontal,
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            add(),
+                                            SingleChildScrollView(
+                                              controller: ScrollController(),
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    width: width,
+                                                    height: height,
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            color: Colors.grey
+                                                                .withOpacity(0.1),
+                                                            spreadRadius: 5,
+                                                            blurRadius: 7,
+                                                            offset: const Offset(0,
+                                                                3), // changes position of shadow
+                                                          ),
+                                                        ],
+                                                        borderRadius:
+                                                            BorderRadius.circular(25),
+                                                        image: DecorationImage(
+                                                            image: AssetImage('$image'),
+                                                            onError:
+                                                                (exception, stackTrace) =>
+                                                                    Container(
+                                                                      color: Colors.white,
+                                                                    ),
+                                                            fit: BoxFit.fill)),
+                                                    child: Stack(children: listWidget),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+
+                              ),
+                            ],
+                          ),
+                        )),
+                  ),
                 ),
-              )),
+              ),
+            ),
+          ),
         ),
       ),
     );
