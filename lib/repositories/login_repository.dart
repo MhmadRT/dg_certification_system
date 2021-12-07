@@ -1,61 +1,11 @@
 import 'dart:convert';
 import 'package:dg_certification_system/api/api_request.dart';
 import 'package:dg_certification_system/api/api_urls.dart';
-import 'package:dg_certification_system/model/custom_error.dart';
 import 'package:dg_certification_system/model/user.dart';
-import 'package:dg_certification_system/utils/api_servers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
-import '../utils/string_extensions.dart';
-
-import 'package:http/http.dart' as http;
-
+ValueNotifier<User>currentUser=ValueNotifier(User());
 class LoginRepository {
-  // Future<dynamic> login(String username, String password) async {
-  //   var body = {"username":"$username","password":"$password"};
-  //   try {
-  //     var response = await http.post(
-  //       Uri.parse('${ApiSevers.phpServer}${ApiSevers.login}'),
-  //       body: json.encode(body),
-  //     );
-  //     var loginResponse = jsonDecode(response.body);
-  //     if (loginResponse['error'] != null) {
-  //       return CustomError.fromJson(loginResponse);
-  //     }else {
-  //       if(int.parse(loginResponse['user']['user_type']) == 1) {
-  //         final user = User.fromJson(loginResponse['user']);
-  //         // var token = tokenData(token: loginResponse['token'],
-  //         //     userid: user.id.toString(),
-  //         //     username: user.name,
-  //         //     imageProfile: user.profile_image);
-  //         // var box = await Hive.openBox('loginInfo');
-  //         // Hive.registerAdapter(TokenAdapter());
-  //         // await box.put('token', token);
-  //         // if (!await box.containsKey('token')) {
-  //         //   await box.delete('token').then((value) async =>
-  //         //   await box.put('token', token)
-  //         //   );
-  //         // }
-  //         // else {
-  //         //   await box.put('token', token);
-  //         // }
-  //         return user;
-  //       }
-  //     else {
-  //         return CustomError(
-  //           error: true,
-  //           errorMessage: "غير مسموح لك بالدخول يرجي الاتصال بمدير الموقع",
-  //         );
-  //       }
-  //     }} catch (err) {
-  //     print(err);
-  //     return CustomError(
-  //       error: true,
-  //       errorMessage: "حدث خطأ يرجي المحاوله مره اخرى",
-  //     );
-  //   }
-  // }
-  //
 
   Future<bool> login(String username, String password,BuildContext context) async {
 
@@ -81,21 +31,22 @@ class LoginRepository {
       } else {
         print('success :${value.data}');
         final user = userFromJson(json.encode(value.data));
-        var token = tokenData(
-          token: user.token!,
-          name: user.fullName??'',
-        );
-        var box = await Hive.openBox('loginInfo');
-        if(!Hive.isAdapterRegistered(1))
-        Hive.registerAdapter(TokenAdapter());
-        await box.put('token', token);
-        if (!await box.containsKey('token')) {
-          await box
-              .delete('token')
-              .then((value) async => await box.put('token', token));
-        } else {
-          await box.put('token', token);
-        }
+        // var token = tokenData(
+        //   token: user.token!,
+        //   name: user.fullName??'',
+        // );
+        currentUser.value=user;
+        // var box = await Hive.openBox('loginInfo');
+        // if(!Hive.isAdapterRegistered(33))
+        // Hive.registerAdapter(TokenAdapter());
+        // await box.put('token', token);
+        // if (!await box.containsKey('token')) {
+        //   await box
+        //       .delete('token')
+        //       .then((value) async => await box.put('token', token));
+        // } else {
+        //   await box.put('token', token);
+        // }
         return true;
       }
     });

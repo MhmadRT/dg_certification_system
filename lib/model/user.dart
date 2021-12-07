@@ -6,6 +6,17 @@ User userFromJson(String str) => User.fromJson(json.decode(str));
 String userToJson(User data) => json.encode(data.toJson());
 
 class User {
+
+
+  bool get hasUser{
+    if(token!=null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
   User({
     this.token,
     this.fullName,
