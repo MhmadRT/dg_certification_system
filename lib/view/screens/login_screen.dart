@@ -1,3 +1,4 @@
+import 'package:dg_certification_system/repositories/login_repository.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
@@ -215,10 +216,16 @@ class LoginScreen extends StatelessWidget {
                 textInputAction: TextInputAction.done,
                 onFieldSubmitted: (value) {
                   if (_loginKey.currentState!.validate()) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const MainScreen()));
+                   LoginRepository().login(email.text, password.text,context).then((value){
+                     print(value);
+                     if(value){
+
+                       Navigator.push(
+                           context,
+                           MaterialPageRoute(
+                               builder: (context) => const MainScreen()));
+                     }
+                   });
                   }
                 },
                 textDirection: TextDirection.ltr,
@@ -267,12 +274,17 @@ class LoginScreen extends StatelessWidget {
               minWidth: double.infinity,
               height: 60,
               onPressed: () {
-                // if (_loginKey.currentState!.validate()) {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const MainScreen()));
-                // }
+                if (_loginKey.currentState!.validate()) {
+                  LoginRepository().login(email.text, password.text,context).then((value){
+                    print(value);
+                    if(value){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MainScreen()));
+                    }
+                  });
+                }
               },
               child: const Text(
                 'تسجيل الدخول',

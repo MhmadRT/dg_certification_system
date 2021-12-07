@@ -98,4 +98,23 @@ extension ColorExtension on String {
           );
         });
   }
+  toWaitDialog(BuildContext context){
+    AlertDialog alert=AlertDialog(
+      content: Row(
+        children: [
+          const CircularProgressIndicator(),
+          Container(margin: const EdgeInsets.only(left: 7,right: 7),child:Text(this )),
+        ],),
+    );
+    showDialog(barrierDismissible: false,
+      context:context,
+      builder:(BuildContext context){
+        return alert;
+      },
+    );
+  }
+  back(BuildContext context) {
+    Navigator.pop(context);
+  }
+
 }

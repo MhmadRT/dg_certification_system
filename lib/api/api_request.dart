@@ -29,6 +29,8 @@ class APIRequest {
         break;
       case APIMethod.POST:
         final response = await http.post(Uri.parse(url), headers: header, body: jsonEncode(body));
+        print('url: $url');
+        print('url: $body');
         print('status code: ${response.statusCode} \n bodyPost: ${response.body}');
         if (response.statusCode == 200) {
 
@@ -61,6 +63,8 @@ class APIRequest {
         http.StreamedResponse response = await request.send();
         var res=await response.stream.bytesToString();
         print(res);
+        print('url: $url');
+        print('url: $body');
         if (response.statusCode == 200) {
           print('status code: ${response.statusCode} \n body321: $res');
           if(res.startsWith('<')) {
