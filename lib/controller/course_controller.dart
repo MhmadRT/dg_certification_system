@@ -1,31 +1,26 @@
 import 'package:dg_certification_system/controller/state_control.dart';
+import 'package:dg_certification_system/model/category_model.dart';
 import 'package:dg_certification_system/model/courses.dart';
-import 'package:dg_certification_system/model/custom_error.dart';
+import 'package:dg_certification_system/repositories/categories_repository.dart';
 import 'package:dg_certification_system/repositories/courses_repository.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
-class CoursesController extends StateControl{
-  List<Courses> list= [];
-  String  error = '';
-  final CourseRepository _pndOrderRepository = CourseRepository();
-  @override
-  void init() {
-    // getData();
-  }
-  // Future<dynamic> getData() async {
-  //   var courseList = await _pndOrderRepository.getCourse();
-  //   if (courseList is CustomError) {
-  //     error = courseList.errorMessage;
-  //     notifyListeners();
-  //     //courseList.errorMessage.toSnakBar(context);
-  //   }
-  //   else{
-  //     list = courseList;
-  //   }
-  //   notifyListeners();
-  // }
-  final BuildContext context;
-  CoursesController(this.context){
+class CourseController extends StateControl {
+  Courses? courses;
+  BuildContext context;
+  bool loading = true;
+
+  CourseController(this.context) {
     init();
+  }
+
+  @override
+  void init() async {
+    loading = true;
+    notifyListeners();
+    courses = await CourseRepository().getCourse(context);
+    loading = false;
+    notifyListeners();
+    super.init();
   }
 }

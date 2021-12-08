@@ -17,19 +17,20 @@ class CourseRepository {
       'Bearer ${currentUser.value.token}'
     };
     var request =
-    http.Request('GET', Uri.parse(APIUrls.category));
-    print(APIUrls.category);
+    http.Request('GET', Uri.parse(APIUrls.courses));
+    print(APIUrls.courses);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
-      Courses category = Courses.fromMap(
+      Courses courses = Courses.fromMap(
           json.decode(await response.stream.bytesToString()));
-      if (category.success) {
+      if (courses.success) {
         log('COURSES TRUE');
-        return category;
+        print(courses.data);
+        return courses;
       } else {
         print('COURSES FALSE');
-        category.message.toDialog(context);
+        courses.message.toDialog(context);
         return [];
       }
     } else {

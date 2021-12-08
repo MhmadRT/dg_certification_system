@@ -11,17 +11,17 @@ import 'package:dg_certification_system/view/widgets/search_field_widget.dart';
 
 import 'loading_widget.dart';
 
-class CoursesListWidget extends StatefulWidget {
-  const CoursesListWidget({
+class CategoriesListWidget extends StatefulWidget {
+  const CategoriesListWidget({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<CoursesListWidget> createState() => _CoursesListWidgetState();
+  State<CategoriesListWidget> createState() => _CategoriesListWidgetState();
 }
+CategoryController? controller;
 
-class _CoursesListWidgetState extends State<CoursesListWidget> {
-  CategoryController? controller;
+class _CategoriesListWidgetState extends State<CategoriesListWidget> {
 
   @override
   void initState() {
@@ -64,7 +64,7 @@ class _CoursesListWidgetState extends State<CoursesListWidget> {
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16),
                         child: Text(
-                          "الدورات التدريبية",
+                          "اقسام الدورات",
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
@@ -92,11 +92,11 @@ class _CoursesListWidgetState extends State<CoursesListWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
                     Text(
-                      "الدورات",
+                      "الأقسام",
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
-                    Text("عدد المتدربين",
+                    Text("",
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold)),
                   ],

@@ -21,14 +21,10 @@ class LoginRepository {
     String url = APIUrls.login;
     var request = http.MultipartRequest('POST', Uri.parse(url));
     request.fields.addAll({'password': password, 'email': username});
-
     request.headers.addAll(headers);
-
     http.StreamedResponse response = await request.send();
-
     if (response.statusCode == 200) {
-      Map<String, dynamic> data =
-          json.decode(await response.stream.bytesToString());
+      Map<String, dynamic> data = json.decode(await response.stream.bytesToString());
       ''.back(context);
       if (data['success']) {
         currentUser.value = User.fromJson(data['data']);
@@ -81,7 +77,6 @@ class TokenAdapter extends TypeAdapter<tokenData> {
       ..writeByte(0)
       ..write(obj.token);
   }
-
   @override
   int get hashCode => typeId.hashCode;
 

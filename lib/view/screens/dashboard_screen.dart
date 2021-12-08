@@ -19,6 +19,8 @@ class DashboardScreen extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (!Responsive.isMobile(context))
                   const Expanded(

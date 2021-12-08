@@ -15,12 +15,12 @@ class AvailableCourseList extends StatefulWidget {
 }
 
 class _AvailableCourseListState extends State<AvailableCourseList> {
-  CoursesController? _coursesController;
+  CourseController? _coursesController;
 
   @override
   void initState() {
     super.initState();
-    _coursesController = CoursesController(context);
+    _coursesController = CourseController(context);
   }
 
   @override
@@ -135,12 +135,11 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                     ],
                   ),
                   const SizedBox(height: defaultPadding),
-                  if (_coursesController!.list.isNotEmpty)
                     ListView.separated(
                       shrinkWrap: true,
                       controller: ScrollController(),
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: _coursesController!.list.length,
+                      itemCount: _coursesController!.courses!.data.length,
                       separatorBuilder: (BuildContext context, int index) =>
                           const Divider(
                         thickness: 0.5,
@@ -148,33 +147,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
                           onTap: () {
-                            Navigator.of(context).push(
-                              PageRouteBuilder(
-                                opaque: false,
-                                barrierDismissible: true,
-                                fullscreenDialog: false,
-                                transitionDuration:
-                                    const Duration(milliseconds: 1000),
-                                pageBuilder: (BuildContext context,
-                                    Animation<double> animation,
-                                    Animation<double> secondaryAnimation) {
-                                  return EmployeeList(
-                                      courseId:
-                                          0);
-                                },
-                                transitionsBuilder: (BuildContext context,
-                                    Animation<double> animation,
-                                    Animation<double> secondaryAnimation,
-                                    Widget child) {
-                                  return Align(
-                                    child: FadeTransition(
-                                      opacity: animation,
-                                      child: child,
-                                    ),
-                                  );
-                                },
-                              ),
-                            );
+
                           },
                           child: Hero(
                             tag: 'trnsList',
@@ -192,7 +165,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: Center(
                                           child: SizedBox(
-                                            child: Text('mm'),
+                                            child: Text(_coursesController!.courses!.data[index].cnum.toString()),
                                           ),
                                         ),
                                       ),
@@ -211,7 +184,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Center(
-                                        child: Text('mm'),
+                                        child: Text(_coursesController!.courses!.data[index].cname),
                                       ),
                                     ),
                                   ),
@@ -313,8 +286,6 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                         );
                       },
                     )
-                  else
-                    Center(child: Text(_coursesController!.error)),
                 ],
               ),
             );
