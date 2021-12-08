@@ -1,3 +1,4 @@
+import 'package:dg_certification_system/controller/category_controller.dart';
 import 'package:dg_certification_system/utils/constants.dart';
 import 'package:dg_certification_system/view/widgets/add_course.dart';
 import 'package:dg_certification_system/view/widgets/courses_list_screen.dart';
@@ -8,8 +9,15 @@ import 'package:flutter/material.dart';
 
 import '../../responsive.dart';
 
-class CoursesScreen extends StatelessWidget {
+class CoursesScreen extends StatefulWidget {
   const CoursesScreen({Key? key}) : super(key: key);
+
+  @override
+  State<CoursesScreen> createState() => _CoursesScreenState();
+}
+
+class _CoursesScreenState extends State<CoursesScreen> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +30,7 @@ class CoursesScreen extends StatelessWidget {
             children: [
               const Expanded(
                 flex: 3,
-                child:   CoursesListWidget(),
+                child: CoursesListWidget(),
               ),
               if (!Responsive.isMobile(context))
                 const SizedBox(width: defaultPadding),

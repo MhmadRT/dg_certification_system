@@ -15,7 +15,7 @@ class APIRequest {
   APIRequest(this.url, this.body, this.header, this.method,{this.img});
 
   Future<ApiResult?> request() async {
-    log('$url \n ${jsonEncode(body)} \n $header');
+    log('$url\n${jsonEncode(body)}\n$header');
     switch (method) {
       case APIMethod.GET:
         final response = await http.get(Uri.parse(url), headers: header);

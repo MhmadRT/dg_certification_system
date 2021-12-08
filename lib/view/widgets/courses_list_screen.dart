@@ -1,3 +1,5 @@
+import 'package:dg_certification_system/controller/category_controller.dart';
+import 'package:dg_certification_system/model/category_model.dart';
 import 'package:dg_certification_system/model/recent_file.dart';
 import 'package:dg_certification_system/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -7,11 +9,26 @@ import '../../main.dart';
 import '../../responsive.dart';
 import 'package:dg_certification_system/view/widgets/search_field_widget.dart';
 
-class CoursesListWidget extends StatelessWidget {
+import 'loading_widget.dart';
+
+class CoursesListWidget extends StatefulWidget {
   const CoursesListWidget({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<CoursesListWidget> createState() => _CoursesListWidgetState();
+}
+
+class _CoursesListWidgetState extends State<CoursesListWidget> {
+  CategoryController? controller;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    controller = CategoryController(context);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -86,11 +103,23 @@ class CoursesListWidget extends StatelessWidget {
                 ),
               ),
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: demoRecentFiles.length,
-              itemBuilder: (context, index) =>
-                  recentFileDataRow(demoRecentFiles[index], context),
+            StreamBuilder<dynamic>(
+              stream: controller!.streamController.stream,
+              builder: (context, snapshot) {
+                if (controller!.loading) {
+                  return const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Center(child: CircularProgressIndicator()),
+                );
+                }
+                else {
+                  return ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: controller!.categories!.data.length,
+                  itemBuilder: (context, index) => categoryWidget(controller!.categories!.data[index], context),
+                );
+                }
+              }
             ),
           ],
         ),
@@ -99,7 +128,7 @@ class CoursesListWidget extends StatelessWidget {
   }
 }
 
-Widget recentFileDataRow(RecentFile fileInfo, BuildContext context) {
+Widget categoryWidget(CategoryData category, BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Row(
@@ -118,14 +147,11 @@ Widget recentFileDataRow(RecentFile fileInfo, BuildContext context) {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-                child: Text(fileInfo.title!),
+                child: Text(category.catTitle),
               ),
             ],
           ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: defaultPadding * 2),
-          child: Text('12'),
-        ),
+
       ],
     ),
   );

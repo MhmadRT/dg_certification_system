@@ -10,10 +10,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../main.dart';
 import 'add_trainee.dart';
+import 'xls_upload_widget.dart';
 
 class AddCourse extends StatelessWidget {
   AddCourse({Key? key}) : super(key: key);
-  List<TraineeModel> list = [];
+  // List<TraineeModel> list = [];
   dynamic newList = {};
 
   pickFile() async {
@@ -32,13 +33,13 @@ class AddCourse extends StatelessWidget {
           newText = csvTable[i];
         }
         print(newText[0]);
-        list.add(TraineeModel(
-          email: newText[1],
-          mobile: newText[7],
-          fullName: newText[2],
-          nationalId: newText[3],
-          employeesNationality: 0,
-        ));
+        // list.add(TraineeModel(
+        //   email: newText[1],
+        //   mobile: newText[7],
+        //   fullName: newText[2],
+        //   nationalId: newText[3],
+        //   employeesNationality: 0,
+        // ));
       }
       // var json = traineeListJson(list);
       print(json);
@@ -255,7 +256,8 @@ class AddCourse extends StatelessWidget {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        pickFile();
+                        // pickFile();
+                        xlsUpload(1).pickFile();
                       },
                       child: Container(
                         height: 150,
