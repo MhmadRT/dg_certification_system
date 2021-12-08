@@ -3,6 +3,7 @@ class APIUrls {
   static final baseApiUrl = baseUrl + 'api/';
   static final category = baseApiUrl + 'getAllCat/?perent_id=';
   static final courses = baseApiUrl + 'courses';
+  static final coursesByCatID = baseApiUrl + 'getAllCourses?cat_id=';
 
   static final login = baseApiUrl + 'login';
   static final register = baseApiUrl + 'register1';

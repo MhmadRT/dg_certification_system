@@ -2,6 +2,7 @@ import 'package:dg_certification_system/controller/category_controller.dart';
 import 'package:dg_certification_system/model/category_model.dart';
 import 'package:dg_certification_system/model/recent_file.dart';
 import 'package:dg_certification_system/utils/constants.dart';
+import 'package:dg_certification_system/view/screens/category_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -19,16 +20,17 @@ class CategoriesListWidget extends StatefulWidget {
   @override
   State<CategoriesListWidget> createState() => _CategoriesListWidgetState();
 }
+
 CategoryController? controller;
 
 class _CategoriesListWidgetState extends State<CategoriesListWidget> {
-
   @override
   void initState() {
     // TODO: implement initState
     controller = CategoryController(context);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -104,23 +106,22 @@ class _CategoriesListWidgetState extends State<CategoriesListWidget> {
               ),
             ),
             StreamBuilder<dynamic>(
-              stream: controller!.streamController.stream,
-              builder: (context, snapshot) {
-                if (controller!.loading) {
-                  return const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Center(child: CircularProgressIndicator()),
-                );
-                }
-                else {
-                  return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: controller!.categories!.data.length,
-                  itemBuilder: (context, index) => categoryWidget(controller!.categories!.data[index], context),
-                );
-                }
-              }
-            ),
+                stream: controller!.streamController.stream,
+                builder: (context, snapshot) {
+                  if (controller!.loading) {
+                    return const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Center(child: CircularProgressIndicator()),
+                    );
+                  } else {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: controller!.categories!.data.length,
+                      itemBuilder: (context, index) => categoryWidget(
+                          controller!.categories!.data[index], context),
+                    );
+                  }
+                }),
           ],
         ),
       ),
@@ -129,30 +130,35 @@ class _CategoriesListWidgetState extends State<CategoriesListWidget> {
 }
 
 Widget categoryWidget(CategoryData category, BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        if (!Responsive.isMobile(context))
-          Row(
-            children: [
-              Container(
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).accentColor),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-                child: Text(category.catTitle),
-              ),
-            ],
-          ),
-
-      ],
+  return InkWell(
+    onTap: () {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const CategoryScreen()));
+    },
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          if (!Responsive.isMobile(context))
+            Row(
+              children: [
+                Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).accentColor),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: defaultPadding / 2),
+                  child: Text(category.catTitle),
+                ),
+              ],
+            ),
+        ],
+      ),
     ),
   );
 }

@@ -37,5 +37,31 @@ class CourseRepository {
       'الرجاء اعادة تسجيل الدخول'.toDialog(context);
     }
   }
+  Future<dynamic> getCoursesByCategoryId(BuildContext context,int categoryId) async {
+    var headers = {
+      'Authorization':
+      'Bearer ${currentUser.value.token}'
+    };
+    var request =
+    http.Request('GET', Uri.parse(APIUrls.coursesByCatID+"$categoryId"));
+    print(APIUrls.courses);
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      Courses courses = Courses.fromMap(
+          json.decode(await response.stream.bytesToString()));
+      if (courses.success) {
+        log('COURSES TRUE');
+        print(courses.data);
+        return courses;
+      } else {
+        print('COURSES FALSE');
+        courses.message.toDialog(context);
+        return [];
+      }
+    } else {
+      'الرجاء اعادة تسجيل الدخول'.toDialog(context);
+    }
+  }
 
 }
