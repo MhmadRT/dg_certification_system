@@ -10,20 +10,20 @@ class CoursesController extends StateControl{
   final CourseRepository _pndOrderRepository = CourseRepository();
   @override
   void init() {
-    getData();
+    // getData();
   }
-  Future<dynamic> getData() async {
-    var courseList = await _pndOrderRepository.getCourse();
-    if (courseList is CustomError) {
-      error = courseList.errorMessage;
-      notifyListeners();
-      //courseList.errorMessage.toSnakBar(context);
-    }
-    else{
-      list = courseList;
-    }
-    notifyListeners();
-  }
+  // Future<dynamic> getData() async {
+  //   var courseList = await _pndOrderRepository.getCourse();
+  //   if (courseList is CustomError) {
+  //     error = courseList.errorMessage;
+  //     notifyListeners();
+  //     //courseList.errorMessage.toSnakBar(context);
+  //   }
+  //   else{
+  //     list = courseList;
+  //   }
+  //   notifyListeners();
+  // }
   final BuildContext context;
   CoursesController(this.context){
     init();

@@ -7,61 +7,43 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import '../../utils/string_extensions.dart';
+import 'package:http/http.dart' as http;
 
 ValueNotifier<User> currentUser = ValueNotifier(User());
 
 class LoginRepository {
- login(
-      String username, String password, BuildContext context) async {
-    'يرجى الانتظار...'.toWaitDialog(context);
+  login(String username, String password, BuildContext context) async {
+    'الرجاء الانتظار'.toWaitDialog(context);
     Map<String, String> headers = {
       "Accept": "application/json",
       "Access-Control-Allow-Origin": "*"
     };
     String url = APIUrls.login;
-    bool success = false;
-    String massage='';
-    APIRequest(
-      url,
-      {"email": "$username", "password": "$password"},
-      headers,
-      APIMethod.MULTI_PART,
-    ).request().then((value) async {
-      print('dadadada :${value!.data}');
+    var request = http.MultipartRequest('POST', Uri.parse(url));
+    request.fields.addAll({'password': password, 'email': username});
 
-      print('success :${value.success}');
-      final user = userFromJson(json.encode(value.data));
-      // var token = tokenData(
-      //   token: user.token!,
-      //   name: user.fullName??'',
-      // );
-      currentUser.value = user;
-      // var box = await Hive.openBox('loginInfo');
-      // if(!Hive.isAdapterRegistered(33))
-      // Hive.registerAdapter(TokenAdapter());
-      // await box.put('token', token);
-      // if (!await box.containsKey('token')) {
-      //   await box
-      //       .delete('token')
-      //       .then((value) async => await box.put('token', token));
-      // } else {
-      //   await box.put('token', token);
-      // }
-      massage=value.message!;
-      success = value.success!;
-      if(value.success!){
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data =
+          json.decode(await response.stream.bytesToString());
+      ''.back(context);
+      if (data['success']) {
+        currentUser.value = User.fromJson(data['data']);
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(
-                builder: (context) => const MainScreen()),(Route<dynamic> route) => false);
+            MaterialPageRoute(builder: (context) => const MainScreen()),
+            (route) => false);
+      } else {
+        ''.back(context);
+        'تاكد من صحة البيانات المدخلة'.toSnakBar(context);
       }
-      else{
-        '$massage'.toSnakBar(context);
-      }
-      return success;
-    });
-    '$massage'.back(context);
-    return success;
+    } else {
+      ''.back(context);
+      'تاكد من صحة البيانات المدخلة'.toSnakBar(context);
+    }
   }
 }
 

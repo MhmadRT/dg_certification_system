@@ -1,3 +1,4 @@
+import 'package:dg_certification_system/controller/login_controller.dart';
 import 'package:dg_certification_system/repositories/login_repository.dart';
 import 'package:flutter/material.dart';
 
@@ -6,8 +7,22 @@ import '../../responsive.dart';
 import 'main_screen.dart';
 import '../../utils/string_extensions.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  LoginController? controller;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    controller = LoginController(context,false);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,8 +115,7 @@ class LoginScreen extends StatelessWidget {
                                   : const Radius.circular(70),
                               bottomLeft: appLang == 'ar'
                                   ? const Radius.circular(70)
-                                  : const Radius.circular(00)
-                          )),
+                                  : const Radius.circular(00))),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -128,13 +142,9 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
-  final _loginKey = GlobalKey<FormState>();
-
   Widget login(BuildContext context) {
     return Form(
-      key: _loginKey,
+      key: controller!.loginKey,
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: Column(
@@ -152,7 +162,7 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(height: 40),
             TextFormField(
                 maxLines: 1,
-                controller: email,
+                controller: controller!.email,
                 validator: (v) {
                   if (v!.isEmpty) {
                     return 'قم بادخال البريد الألكتروني';
@@ -172,7 +182,7 @@ class LoginScreen extends StatelessWidget {
                     filled: true,
                     contentPadding:
                         const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-                    fillColor: Colors.white,
+                    fillColor: const Color(0xffF3F5F8),
                     disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide:
@@ -203,7 +213,7 @@ class LoginScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold))),
             const SizedBox(height: 10),
             TextFormField(
-                controller: password,
+                controller: controller!.password,
                 validator: (v) {
                   if (v!.isEmpty) {
                     return 'قم بادخال كلمة المرور';
@@ -215,19 +225,8 @@ class LoginScreen extends StatelessWidget {
                 },
                 maxLines: 1,
                 textInputAction: TextInputAction.done,
-                onFieldSubmitted: (value) {
-                  if (_loginKey.currentState!.validate()) {
-                   LoginRepository().login(email.text, password.text,context).then((value){
-                     print(value);
-                     if(value){
-
-                       Navigator.pushAndRemoveUntil(
-                           context,
-                           MaterialPageRoute(
-                               builder: (context) => const MainScreen()),(Route<dynamic> route) => false);
-                     }
-                   });
-                  }
+                onFieldSubmitted: (value) async {
+                  controller!.login();
                 },
                 textDirection: TextDirection.ltr,
                 obscureText: true,
@@ -239,7 +238,7 @@ class LoginScreen extends StatelessWidget {
                     filled: true,
                     contentPadding:
                         const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-                    fillColor: Colors.white,
+                    fillColor: const Color(0xffF3F5F8),
                     disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide:
@@ -269,31 +268,24 @@ class LoginScreen extends StatelessWidget {
                         color: Theme.of(context).accentColor,
                         fontWeight: FontWeight.bold))),
             const SizedBox(height: 40),
-            MaterialButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18)),
-              minWidth: double.infinity,
-              height: 60,
-              onPressed: () {
 
-                if (_loginKey.currentState!.validate()) {
-
-                  LoginRepository().login(email.text, password.text,context).then((value){
-                    print(value);
-
-
-                  });
-                }
-              },
-              child: const Text(
-                'تسجيل الدخول',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 20),
+              MaterialButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18)),
+                minWidth: double.infinity,
+                height: 60,
+                onPressed: () {
+                  controller!.login();
+                },
+                child: const Text(
+                  'تسجيل الدخول',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 20),
+                ),
+                color: Theme.of(context).primaryColor,
               ),
-              color: Theme.of(context).primaryColor,
-            ),
             const Padding(
               padding: EdgeInsets.all(20.0),
               child: Center(child: Text('هل نسيت كلمة المرور ؟')),
