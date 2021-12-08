@@ -24,7 +24,7 @@ class _CertificatesThemesListState extends State<CertificatesThemesList> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const DragAndDropScreen()));
+                    builder: (context) =>  DragAndDropScreen()));
           },
           child: Row(
             children: [
