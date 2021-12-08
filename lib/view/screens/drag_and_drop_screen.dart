@@ -10,11 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 import 'dart:ui' as ui;
 import '../../responsive.dart';
 import '../widgets/dragable_widget.dart';
 import '../../model/item_model.dart';
+
+import 'package:universal_html/html.dart' as html;
+
 
 class DragAndDropScreen extends StatefulWidget {
   const DragAndDropScreen({Key? key}) : super(key: key);
@@ -121,7 +125,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                     children: [
                                       Screenshot(child: certificateBoundary(),
                                         controller: screenshotController,),
-                                      MaterialButton(onPressed: _capturePng,color: Colors.red,)
+                                      MaterialButton(onPressed: _capturePn,color: Colors.red,)
                                     ],
                                   )],
                                 ),
@@ -146,20 +150,42 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
     "DATE"
   ];
   bool landScape = false;
-
+  Future<Uint8List?> _capturePn() async {
+    try {
+      print('inside');
+      RenderRepaintBoundary? boundary =
+      _globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary?;
+      ui.Image image = await boundary!.toImage(pixelRatio: 3.0);
+      ByteData? byteData =
+      await image.toByteData(format: ui.ImageByteFormat.png);
+      var pngBytes = byteData!.buffer.asUint8List();
+      var bs64 = base64Encode(pngBytes);
+      print(pngBytes);
+      print(bs64);
+      _createPDF(bs64);
+      setState(() {});
+      return pngBytes;
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
   certificateBoundary() {
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-          color: Colors.white,
-          image: DecorationImage(
-              image: AssetImage('$image'),
-              onError: (exception, stackTrace) => Container(
-                    color: Colors.white,
-                  ),
-              fit: BoxFit.fill)),
-      child: Stack(children: listWidget),
+    return RepaintBoundary(
+      key: _globalKey,
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            image: DecorationImage(
+                image: AssetImage('$image'),
+                onError: (exception, stackTrace) => Container(
+                      color: Colors.white,
+                    ),
+                fit: BoxFit.fill)),
+        child: Stack(children: listWidget),
+      ),
     );
   }
 
@@ -1130,6 +1156,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
             });
     }
   }
+  String imageString='';
 
   Future<Uint8List?> _capturePng() async {
     var container = Container(
@@ -1152,22 +1179,42 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
             context, Material(child: certificateBoundary())),
         delay: Duration(seconds: 1))
         .then((capturedImage) async {
-      print( base64.encode(capturedImage));
-      Navigator.push(
-        context,
-        PageRouteBuilder(
-          pageBuilder: (c, a1, a2) =>
-              photoeditor(capturedImage: capturedImage),
-          transitionsBuilder: (c, anim, a2,
-              child) =>
-              FadeTransition(
-                  opacity: anim, child: child),
-          transitionDuration: Duration(
-              milliseconds: 1000),
-        ),
-      );
+      // print( base64.encode(capturedImage));
+
+      _createPDF(base64.encode(capturedImage).toString());
+      // Navigator.push(
+      //   context,
+      //   PageRouteBuilder(
+      //     pageBuilder: (c, a1, a2) =>
+      //         photoeditor(capturedImage: capturedImage),
+      //     transitionsBuilder: (c, anim, a2,
+      //         child) =>
+      //         FadeTransition(
+      //             opacity: anim, child: child),
+      //     transitionDuration: Duration(
+      //         milliseconds: 1000),
+      //   ),
+      // );
     }).catchError((onError) {
       print(onError);
     });
+  }
+
+
+  Future<void> _createPDF(String? _imageString) async {
+    //Create a PDF document.
+    PdfDocument document = PdfDocument();
+    //Add a page and draw text
+    document.pages.add().graphics.drawImage(PdfBitmap.fromBase64String(_imageString!),Rect.fromLTWH(0, 0, 100, 100));
+
+    //Save the document
+    List<int> bytes = document.save();
+    final blob = html.Blob([bytes], 'application/pdf');
+    print(document.pages.count);
+    final url = html.Url.createObjectUrlFromBlob(blob);
+    html.window.open(url, "_blank");
+    html.Url.revokeObjectUrl(url);
+    //Dispose the document
+    document.dispose();
   }
 }
