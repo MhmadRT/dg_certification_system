@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:dg_certification_system/api/api_urls.dart';
-import 'package:dg_certification_system/model/courseInfo.dart';
 import 'package:dg_certification_system/model/courses.dart';
 import 'package:dg_certification_system/model/custom_error.dart';
 import 'package:dg_certification_system/utils/string_extensions.dart';

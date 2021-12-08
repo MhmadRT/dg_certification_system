@@ -160,7 +160,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                     Animation<double> secondaryAnimation) {
                                   return EmployeeList(
                                       courseId:
-                                          _coursesController!.list[index].id);
+                                          0);
                                 },
                                 transitionsBuilder: (BuildContext context,
                                     Animation<double> animation,
@@ -192,9 +192,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: Center(
                                           child: SizedBox(
-                                            child: Text(_coursesController!
-                                                .list[index].id
-                                                .toString()),
+                                            child: Text('mm'),
                                           ),
                                         ),
                                       ),
@@ -213,8 +211,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Center(
-                                        child: Text(_coursesController!
-                                            .list[index].CourseName),
+                                        child: Text('mm'),
                                       ),
                                     ),
                                   ),
@@ -238,8 +235,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                                 backgroundColor: secondColor,
                                               ),
                                               onPressed: () {
-                                                xlsUpload(_coursesController!
-                                                        .list[index].id)
+                                                xlsUpload(0)
                                                     .pickFile();
                                               }))),
                                 if (!Responsive.isMobile(context))
@@ -275,8 +271,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                                             secondaryAnimation) {
                                                       return EmployeeList(
                                                         courseId:
-                                                            _coursesController!
-                                                                .list[index].id,
+                                                           0,
                                                       );
                                                     },
                                                     transitionsBuilder:
