@@ -2,19 +2,25 @@ import 'dart:convert';
 import 'package:dg_certification_system/api/api_request.dart';
 import 'package:dg_certification_system/api/api_urls.dart';
 import 'package:dg_certification_system/model/user.dart';
+import 'package:dg_certification_system/view/screens/main_screen.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-ValueNotifier<User>currentUser=ValueNotifier(User());
+import '../../utils/string_extensions.dart';
+
+ValueNotifier<User> currentUser = ValueNotifier(User());
+
 class LoginRepository {
-
-  Future<bool> login(String username, String password,BuildContext context) async {
-
+ login(
+      String username, String password, BuildContext context) async {
+    'يرجى الانتظار...'.toWaitDialog(context);
     Map<String, String> headers = {
       "Accept": "application/json",
       "Access-Control-Allow-Origin": "*"
     };
     String url = APIUrls.login;
-
+    bool success = false;
+    String massage='';
     APIRequest(
       url,
       {"email": "$username", "password": "$password"},
@@ -22,35 +28,40 @@ class LoginRepository {
       APIMethod.MULTI_PART,
     ).request().then((value) async {
       print('dadadada :${value!.data}');
-      if (value.success == false) {
-        // return CustomError(
-        //   error: true,
-        //   errorMessage: "غير مسموح لك بالدخول يرجي الاتصال بمدير الموقع",
-        // );
-        return false;
-      } else {
-        print('success :${value.data}');
-        final user = userFromJson(json.encode(value.data));
-        // var token = tokenData(
-        //   token: user.token!,
-        //   name: user.fullName??'',
-        // );
-        currentUser.value=user;
-        // var box = await Hive.openBox('loginInfo');
-        // if(!Hive.isAdapterRegistered(33))
-        // Hive.registerAdapter(TokenAdapter());
-        // await box.put('token', token);
-        // if (!await box.containsKey('token')) {
-        //   await box
-        //       .delete('token')
-        //       .then((value) async => await box.put('token', token));
-        // } else {
-        //   await box.put('token', token);
-        // }
-        return true;
+
+      print('success :${value.success}');
+      final user = userFromJson(json.encode(value.data));
+      // var token = tokenData(
+      //   token: user.token!,
+      //   name: user.fullName??'',
+      // );
+      currentUser.value = user;
+      // var box = await Hive.openBox('loginInfo');
+      // if(!Hive.isAdapterRegistered(33))
+      // Hive.registerAdapter(TokenAdapter());
+      // await box.put('token', token);
+      // if (!await box.containsKey('token')) {
+      //   await box
+      //       .delete('token')
+      //       .then((value) async => await box.put('token', token));
+      // } else {
+      //   await box.put('token', token);
+      // }
+      massage=value.message!;
+      success = value.success!;
+      if(value.success!){
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const MainScreen()),(Route<dynamic> route) => false);
       }
+      else{
+        '$massage'.toSnakBar(context);
+      }
+      return success;
     });
-    return false;
+    '$massage'.back(context);
+    return success;
   }
 }
 

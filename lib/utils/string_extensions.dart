@@ -1,7 +1,7 @@
-
 import 'package:dg_certification_system/view/screens/certificates_theme_list.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
+
 extension ColorExtension on String {
   toColor() {
     var hexColor = replaceAll("#", "");
@@ -12,30 +12,33 @@ extension ColorExtension on String {
       return Color(int.parse("0x$hexColor"));
     }
   }
-  toWidget(GlobalKey<ScaffoldState> key){
+
+  toWidget(GlobalKey<ScaffoldState> key) {
     switch (this) {
       // case 'DashboardScreen':
       //   return  DashboardScreen(key);
-        case 'CertificatesThemesList':
-        return  CertificatesThemesList();
+      case 'CertificatesThemesList':
+        return CertificatesThemesList();
       case 'FormScreen':
-        return  Container();
+        return Container();
       case 'UsersScreen':
-        return  Container();
+        return Container();
       case 'EmployeeScreen':
-        return  Container();
-        //AddUser
+        return Container();
+      //AddUser
       case 'AddUser':
-        return  Container();
+        return Container();
       default:
-        return  Container();
+        return Container();
     }
   }
-  toSnakBar(BuildContext context){
 
+  toSnakBar(BuildContext context) {
     final snackBar = SnackBar(
-      backgroundColor: primaryColor,
-        content: Container(height: 30,color: primaryColor,
+        backgroundColor: primaryColor,
+        content: Container(
+          height: 30,
+          color: primaryColor,
           child: Center(
             child: Text(
               this,
@@ -46,25 +49,29 @@ extension ColorExtension on String {
             ),
           ),
         ));
-    return ScaffoldMessenger.of(context).showSnackBar(snackBar,);
+    return ScaffoldMessenger.of(context).showSnackBar(
+      snackBar,
+    );
   }
-  toDialog(BuildContext context){
+
+  toDialog(BuildContext context) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             contentPadding: const EdgeInsets.only(top: 30.0),
             actionsPadding: EdgeInsets.zero,
-            titlePadding:  const EdgeInsets.only(top:10),
+            titlePadding: const EdgeInsets.only(top: 10),
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(32.0))),
             title: Column(
               children: [
                 const Center(child: Text("حدث خطأ")),
-                Container(height:0.5,color:Colors.grey),
+                Container(height: 0.5, color: Colors.grey),
               ],
             ),
-            content: SizedBox(height: MediaQuery.of(context).size.width*.40,
+            content: SizedBox(
+              height: MediaQuery.of(context).size.width * .40,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -76,8 +83,9 @@ extension ColorExtension on String {
                     ),
                   ),
                   InkWell(
-                    onTap:()=> Navigator.of(context).pop(),
-                    child: Container(width: MediaQuery.of(context).size.width,
+                    onTap: () => Navigator.of(context).pop(),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
                       padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                       decoration: const BoxDecoration(
                         color: Color(0xff545151),
@@ -98,23 +106,39 @@ extension ColorExtension on String {
           );
         });
   }
-  toWaitDialog(BuildContext context){
-    AlertDialog alert=AlertDialog(
-      content: Row(
-        children: [
-          const CircularProgressIndicator(),
-          Container(margin: const EdgeInsets.only(left: 7,right: 7),child:Text(this )),
-        ],),
+
+  toWaitDialog(BuildContext context) {
+    AlertDialog alert = AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20)
+      ),
+      content: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const CircularProgressIndicator(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  margin: const EdgeInsets.only(left: 7, right: 7),
+                  child: Text(this)),
+            ),
+          ],
+        ),
+      ),
     );
-    showDialog(barrierDismissible: false,
-      context:context,
-      builder:(BuildContext context){
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
         return alert;
       },
     );
   }
+
   back(BuildContext context) {
     Navigator.pop(context);
   }
-
 }

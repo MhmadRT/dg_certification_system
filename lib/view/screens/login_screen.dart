@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../main.dart';
 import '../../responsive.dart';
 import 'main_screen.dart';
+import '../../utils/string_extensions.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -220,10 +221,10 @@ class LoginScreen extends StatelessWidget {
                      print(value);
                      if(value){
 
-                       Navigator.push(
+                       Navigator.pushAndRemoveUntil(
                            context,
                            MaterialPageRoute(
-                               builder: (context) => const MainScreen()));
+                               builder: (context) => const MainScreen()),(Route<dynamic> route) => false);
                      }
                    });
                   }
@@ -274,15 +275,13 @@ class LoginScreen extends StatelessWidget {
               minWidth: double.infinity,
               height: 60,
               onPressed: () {
+
                 if (_loginKey.currentState!.validate()) {
+
                   LoginRepository().login(email.text, password.text,context).then((value){
                     print(value);
-                    if(value){
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MainScreen()));
-                    }
+
+
                   });
                 }
               },
