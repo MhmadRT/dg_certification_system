@@ -1,4 +1,5 @@
 import 'package:dg_certification_system/view/screens/certificates_theme_list.dart';
+import 'package:dg_certification_system/view/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
@@ -71,22 +72,76 @@ extension ColorExtension on String {
                 Container(height: 0.5, color: Colors.grey),
               ],
             ),
-            content: SizedBox(
-              height: MediaQuery.of(context).size.width * .40,
-              child: Column(
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 40.0),
+                  child: Center(child: Text(this)),
+                ),
+                InkWell(
+                  onTap: () => Navigator.of(context).pop(),
+                  child: Container(
+                    padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                    decoration: const BoxDecoration(
+                      color: Color(0xff545151),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(32.0),
+                          bottomRight: Radius.circular(32.0)),
+                    ),
+                    child: const Text(
+                      "إغلاق",
+                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
+  _willPop() {}
+
+  expirationSession(BuildContext context) {
+    return showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return WillPopScope(
+            onWillPop: () => _willPop(),
+            child: AlertDialog(
+              contentPadding: const EdgeInsets.only(top: 30.0),
+              actionsPadding: EdgeInsets.zero,
+              titlePadding: const EdgeInsets.only(top: 10),
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(32.0))),
+              title: Column(
+                children: [
+                  const Center(child: Text("حدث خطأ")),
+                  Container(height: 0.5, color: Colors.grey),
+                ],
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 40.0),
-                      child: Center(child: Text(this)),
-                    ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 40.0),
+                    child: Center(child: Text(this)),
                   ),
                   InkWell(
-                    onTap: () => Navigator.of(context).pop(),
+                    onTap: () => Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                          builder: (context) => LoginScreen(),
+                        ),
+                        (route) => false),
                     child: Container(
-                      width: MediaQuery.of(context).size.width,
+
                       padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                       decoration: const BoxDecoration(
                         color: Color(0xff545151),
@@ -95,7 +150,7 @@ extension ColorExtension on String {
                             bottomRight: Radius.circular(32.0)),
                       ),
                       child: const Text(
-                        "إغلاق",
+                        "تسجيل الدخول",
                         style: TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
@@ -110,9 +165,7 @@ extension ColorExtension on String {
 
   toWaitDialog(BuildContext context) {
     AlertDialog alert = AlertDialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20)
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       content: Directionality(
         textDirection: TextDirection.rtl,
         child: Column(

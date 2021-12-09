@@ -33,7 +33,7 @@ class CourseRepository {
         return [];
       }
     } else {
-      'الرجاء اعادة تسجيل الدخول'.toDialog(context);
+      'الرجاء اعادة تسجيل الدخول'.expirationSession(context);
     }
   }
   Future<dynamic> getCoursesByCategoryId(BuildContext context,int categoryId) async {
@@ -59,7 +59,7 @@ class CourseRepository {
         return [];
       }
     } else {
-      'الرجاء اعادة تسجيل الدخول'.toDialog(context);
+      'الرجاء اعادة تسجيل الدخول'.expirationSession(context);
     }
   }
 
