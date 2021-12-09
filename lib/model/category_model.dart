@@ -2,7 +2,6 @@
 //
 //     final category = categoryFromMap(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 Categories categoryFromMap(String str) => Categories.fromMap(json.decode(str));

@@ -2,7 +2,6 @@
 //
 //     final courses = coursesFromMap(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 Courses coursesFromMap(String str) => Courses.fromMap(json.decode(str));

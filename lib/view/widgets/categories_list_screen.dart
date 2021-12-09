@@ -1,16 +1,11 @@
 import 'package:dg_certification_system/controller/category_controller.dart';
 import 'package:dg_certification_system/model/category_model.dart';
-import 'package:dg_certification_system/model/recent_file.dart';
 import 'package:dg_certification_system/utils/constants.dart';
-import 'package:dg_certification_system/view/screens/category_screen.dart';
+import 'package:dg_certification_system/view/widgets/search_field_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import '../../utils/string_extensions.dart';
+
 import '../../main.dart';
 import '../../responsive.dart';
-import 'package:dg_certification_system/view/widgets/search_field_widget.dart';
-
-import 'loading_widget.dart';
 
 class CategoriesListWidget extends StatefulWidget {
   const CategoriesListWidget({

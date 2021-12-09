@@ -1,10 +1,7 @@
-import 'package:dg_certification_system/controller/category_controller.dart';
 import 'package:dg_certification_system/utils/constants.dart';
 import 'package:dg_certification_system/view/widgets/add_course.dart';
 import 'package:dg_certification_system/view/widgets/categories_list_screen.dart';
 import 'package:dg_certification_system/view/widgets/header_widget.dart';
-import 'package:dg_certification_system/view/widgets/search_field_widget.dart';
-import 'package:dg_certification_system/view/widgets/user_card_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../responsive.dart';

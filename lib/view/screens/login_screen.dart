@@ -1,11 +1,8 @@
 import 'package:dg_certification_system/controller/login_controller.dart';
-import 'package:dg_certification_system/repositories/login_repository.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
 import '../../responsive.dart';
-import 'main_screen.dart';
-import '../../utils/string_extensions.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

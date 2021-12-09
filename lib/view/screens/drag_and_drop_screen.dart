@@ -1,23 +1,20 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'dart:ui';
+import 'dart:ui' as ui;
 
 import 'package:dg_certification_system/utils/constants.dart';
-import 'package:dg_certification_system/view/screens/photoeditor.dart';
 import 'package:dg_certification_system/view/widgets/header_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:http/http.dart'as http;
 import 'package:screenshot/screenshot.dart';
-import 'package:syncfusion_flutter_pdf/pdf.dart';
 
-import 'dart:ui' as ui;
+import '../../model/item_model.dart';
 import '../../responsive.dart';
 import '../widgets/dragable_widget.dart';
-import '../../model/item_model.dart';
-
-import 'package:universal_html/html.dart' as html;
 
 
 class DragAndDropScreen extends StatefulWidget {
@@ -160,8 +157,9 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
       await image.toByteData(format: ui.ImageByteFormat.png);
       var pngBytes = byteData!.buffer.asUint8List();
       var bs64 = base64Encode(pngBytes);
-      print(pngBytes);
-      print(bs64);
+      // print(pngBytes);
+      // print(bs64);
+
       _createPDF(bs64);
       setState(() {});
       return pngBytes;
@@ -1203,18 +1201,37 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
 
   Future<void> _createPDF(String? _imageString) async {
     //Create a PDF document.
-    PdfDocument document = PdfDocument();
-    //Add a page and draw text
-    document.pages.add().graphics.drawImage(PdfBitmap.fromBase64String(_imageString!),Rect.fromLTWH(0, 0, 100, 100));
+    // PdfDocument document = PdfDocument();
+    // //Add a page and draw text
+    // document.pages.add().graphics.drawImage(PdfBitmap.fromBase64String(_imageString!),Rect.fromLTWH(0, 0, 100, 100));
+    var headers = {
+      "Accept": "application/json",
+      "Access-Control-Allow-Origin": "*"
+    };
+    var request = http.Request('GET', Uri.parse('https://training.jo-schools.com/api/pngToPdf.php'));
+    request.body = json.encode({
+      "image": "$_imageString"
+    });
+    request.headers.addAll(headers);
 
-    //Save the document
-    List<int> bytes = document.save();
-    final blob = html.Blob([bytes], 'application/pdf');
-    print(document.pages.count);
-    final url = html.Url.createObjectUrlFromBlob(blob);
-    html.window.open(url, "_blank");
-    html.Url.revokeObjectUrl(url);
-    //Dispose the document
-    document.dispose();
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+
+    //
+    // //Save the document
+    // List<int> bytes = document.save();
+    // final blob = html.Blob([bytes], 'application/pdf');
+    // print(document.pages.count);
+    // final url = html.Url.createObjectUrlFromBlob(blob);
+    // html.window.open(url, "_blank");
+    // html.Url.revokeObjectUrl(url);
+    // //Dispose the document
+    // document.dispose();
   }
 }

@@ -1,13 +1,14 @@
 import 'dart:convert';
-import 'package:dg_certification_system/api/api_request.dart';
+
 import 'package:dg_certification_system/api/api_urls.dart';
 import 'package:dg_certification_system/model/user.dart';
 import 'package:dg_certification_system/view/screens/main_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import '../../utils/string_extensions.dart';
 import 'package:http/http.dart' as http;
+
+import '../../utils/string_extensions.dart';
 
 ValueNotifier<User> currentUser = ValueNotifier(User());
 

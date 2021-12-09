@@ -1,11 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:js';
-import 'package:dg_certification_system/api/api_request.dart';
+
 import 'package:dg_certification_system/api/api_urls.dart';
-import 'package:dg_certification_system/model/api_result.dart';
 import 'package:dg_certification_system/model/category_model.dart';
-import 'package:dg_certification_system/model/custom_error.dart';
 import 'package:dg_certification_system/utils/string_extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;

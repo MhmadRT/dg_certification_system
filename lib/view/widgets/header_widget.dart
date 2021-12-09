@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:dg_certification_system/responsive.dart';
 import 'package:dg_certification_system/utils/constants.dart';

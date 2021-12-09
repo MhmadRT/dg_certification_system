@@ -1,6 +1,5 @@
 import 'package:dg_certification_system/utils/constants.dart';
 import 'package:dg_certification_system/view/widgets/certificate_theme_widget.dart';
-import 'package:dg_certification_system/view/widgets/courses_grid_widget.dart';
 import 'package:dg_certification_system/view/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 

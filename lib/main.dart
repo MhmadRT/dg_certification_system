@@ -1,5 +1,3 @@
-import 'package:dg_certification_system/view/screens/drag_and_drop_screen.dart';
-import 'package:dg_certification_system/view/screens/login_screen.dart';
 import 'package:dg_certification_system/view/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +26,7 @@ class MyApp extends StatelessWidget {
           elevation: 0.0,
         ),
       ),
-      home: const LoginScreen(),
+      home: const MainScreen(),
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:dg_certification_system/utils/constants.dart';
-import 'package:dg_certification_system/view/widgets/course_card_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
