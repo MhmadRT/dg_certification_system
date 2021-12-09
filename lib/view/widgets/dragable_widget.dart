@@ -1,3 +1,4 @@
+import 'package:dg_certification_system/model/themes.dart';
 import 'package:flutter/material.dart';
 
 import '../../controller/darg_widget_controller.dart';
@@ -8,7 +9,7 @@ class DragWidget extends StatelessWidget {
   final double high;
   final double width;
   DragWidgetController? con;
-  ItemModel itemModel;
+  Item itemModel;
 
   DragWidget(
       {Key? key,
@@ -30,8 +31,8 @@ class DragWidget extends StatelessWidget {
         stream: con!.streamController.stream,
         builder: (context, snapshot) {
           return Positioned(
-            left: con!.itemModel.x,
-            top: con!.itemModel.y,
+            left: (con!.itemModel.x),
+            top: (con!.itemModel.y),
             child: GestureDetector(
               onLongPress: () {
                 print('lonngg');
@@ -63,34 +64,36 @@ class DragWidget extends StatelessWidget {
         });
   }
 
-    itemWidget(ItemModel itemModel) {
-      switch (itemModel.type) {
-        case 0:
-          return SizedBox(
-              width: itemModel.width,
-              child: SelectableText(
-                itemModel.text,
-                textAlign: itemModel.align == 0
-                    ? TextAlign.left
-                    : itemModel.align == 1
-                    ? TextAlign.right
-                    : TextAlign.center,
-                style: TextStyle(
-                  fontSize: itemModel.textSize,
-                  color: Color(itemModel.color),
-                  fontWeight: itemModel.fontWight == 6
-                      ? FontWeight.bold
-                      : FontWeight.normal,
-                ),
-              ));
-          case 1:
-          return Image.memory(
-              itemModel.text,
-              height: itemModel.height,
-            );
-          case 2:
-          return Icon(Icons.qr_code_rounded,size: itemModel.width,);
-      }
+  itemWidget(Item itemModel) {
+    switch (int.parse(itemModel.type)) {
+      case 0:
+        return SizedBox(
+            width: itemModel.width,
+            child: SelectableText(
+              itemModel.content,
+              textAlign: int.parse(itemModel.align) == 0
+                  ? TextAlign.left
+                  : int.parse(itemModel.align) == 1
+                      ? TextAlign.right
+                      : TextAlign.center,
+              style: TextStyle(
+                fontSize: itemModel.textSize,
+                color: Color(int.parse(itemModel.color)),
+                fontWeight: int.parse(itemModel.fontWight) == 6
+                    ? FontWeight.bold
+                    : FontWeight.normal,
+              ),
+            ));
+      case 1:
+        return Image.network(
+          itemModel.content,
+          height: itemModel.height,
+        );
+      case 2:
+        return Icon(
+          Icons.qr_code_rounded,
+          size: itemModel.width,
+        );
     }
-
+  }
 }

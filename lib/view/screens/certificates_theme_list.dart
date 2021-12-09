@@ -1,3 +1,5 @@
+import 'package:dg_certification_system/controller/theme_controller.dart';
+import 'package:dg_certification_system/model/themes.dart';
 import 'package:dg_certification_system/utils/constants.dart';
 import 'package:dg_certification_system/view/widgets/certificate_theme_widget.dart';
 import 'package:dg_certification_system/view/widgets/header_widget.dart';
@@ -13,6 +15,14 @@ class CertificatesThemesList extends StatefulWidget {
 }
 
 class _CertificatesThemesListState extends State<CertificatesThemesList> {
+  ThemeController? themeController;
+
+  @override
+  initState() {
+    themeController = ThemeController(context: context);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,10 +30,8 @@ class _CertificatesThemesListState extends State<CertificatesThemesList> {
         const HeaderWidget(),
         InkWell(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>  DragAndDropScreen()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => DragAndDropScreen()));
           },
           child: Row(
             children: [
@@ -56,9 +64,23 @@ class _CertificatesThemesListState extends State<CertificatesThemesList> {
             ],
           ),
         ),
-        const SizedBox(height: defaultPadding),
-        const Expanded(
-          child: CertificateThemeWidget(),
+        Expanded(
+          child: StreamBuilder<dynamic>(
+            stream: themeController!.streamController.stream,
+            builder: (context, snapshot) {
+              return Column(
+                children: [
+                  const SizedBox(height: defaultPadding),
+                  themeController!.loading?const Center(child: CircularProgressIndicator()):
+                  Expanded(
+                    child: CertificateThemeWidget(
+                      themes: themeController!.themes ?? Themes(themes: []),
+                    ),
+                  ),
+                ],
+              );
+            }
+          ),
         )
       ],
     );

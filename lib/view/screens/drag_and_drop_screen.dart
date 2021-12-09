@@ -3,13 +3,14 @@ import 'dart:typed_data';
 import 'dart:ui';
 import 'dart:ui' as ui;
 
+import 'package:dg_certification_system/model/themes.dart';
 import 'package:dg_certification_system/utils/constants.dart';
 import 'package:dg_certification_system/view/widgets/header_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:http/http.dart'as http;
+import 'package:http/http.dart' as http;
 import 'package:screenshot/screenshot.dart';
 
 import '../../model/item_model.dart';
@@ -63,9 +64,14 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
+    double screenHeight = MediaQuery
+        .of(context)
+        .size
+        .height;
 
     return Scaffold(
       body: Scrollbar(
@@ -101,24 +107,29 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                               const SizedBox(height: defaultPadding),
                               Expanded(
                                   child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25),
-                                    color: Colors.white),
-                                child: Flex(
-                                  direction: Responsive.isMobile(context)
-                                      ? Axis.vertical
-                                      : Axis.horizontal,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [add(), Column(
-                                    children: [
-                                      Screenshot(child: certificateBoundary(),
-                                        controller: screenshotController,),
-                                      MaterialButton(onPressed: _capturePn,color: Colors.red,)
-                                    ],
-                                  )],
-                                ),
-                              )),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
+                                        color: Colors.white),
+                                    child: Flex(
+                                      direction: Responsive.isMobile(context)
+                                          ? Axis.vertical
+                                          : Axis.horizontal,
+                                      mainAxisAlignment: MainAxisAlignment
+                                          .start,
+                                      crossAxisAlignment: CrossAxisAlignment
+                                          .start,
+                                      children: [add(), Column(
+                                        children: [
+                                          Screenshot(
+                                            child: certificateBoundary(),
+                                            controller: screenshotController,),
+                                          MaterialButton(onPressed: _capturePn,
+                                            color: Colors.red,)
+                                        ],
+                                      )
+                                      ],
+                                    ),
+                                  )),
                             ],
                           ),
                         )),
@@ -139,6 +150,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
     "DATE"
   ];
   bool landScape = false;
+
   Future<Uint8List?> _capturePn() async {
     try {
       print('inside');
@@ -160,6 +172,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
       return null;
     }
   }
+
   certificateBoundary() {
     return RepaintBoundary(
       key: _globalKey,
@@ -170,7 +183,8 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
             color: Colors.white,
             image: DecorationImage(
                 image: AssetImage('$image'),
-                onError: (exception, stackTrace) => Container(
+                onError: (exception, stackTrace) =>
+                    Container(
                       color: Colors.white,
                     ),
                 fit: BoxFit.fill)),
@@ -181,7 +195,9 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
 
   add() {
     TextStyle titleStyle = TextStyle(
-        fontWeight: FontWeight.bold, color: Theme.of(context).accentColor);
+        fontWeight: FontWeight.bold, color: Theme
+        .of(context)
+        .accentColor);
     return Expanded(
         flex: 1,
         child: Padding(
@@ -213,7 +229,9 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                         ),
                         color: landScape
                             ? Colors.grey
-                            : Theme.of(context).accentColor,
+                            : Theme
+                            .of(context)
+                            .accentColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -235,7 +253,9 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                           ),
                         ),
                         color: landScape
-                            ? Theme.of(context).accentColor
+                            ? Theme
+                            .of(context)
+                            .accentColor
                             : Colors.grey,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
@@ -263,42 +283,55 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                         disabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide(
-                                color: Theme.of(context)
+                                color: Theme
+                                    .of(context)
                                     .accentColor
                                     .withOpacity(0.5),
                                 width: 1)),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide(
-                                color: Theme.of(context)
+                                color: Theme
+                                    .of(context)
                                     .accentColor
                                     .withOpacity(0.5),
                                 width: 1)),
                         errorBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide(
-                                color: Theme.of(context)
+                                color: Theme
+                                    .of(context)
                                     .accentColor
                                     .withOpacity(0.5),
                                 width: 1)),
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide(
-                                color: Theme.of(context)
+                                color: Theme
+                                    .of(context)
                                     .accentColor
                                     .withOpacity(0.5),
                                 width: 1)),
                         focusedErrorBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide(
-                                color: Theme.of(context)
+                                color: Theme
+                                    .of(context)
                                     .accentColor
                                     .withOpacity(0.5),
                                 width: 1)),
                         border:
-                            OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Theme.of(context).accentColor.withOpacity(0.5), width: 1)),
+                        OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(color: Theme
+                                .of(context)
+                                .accentColor
+                                .withOpacity(0.5), width: 1)),
                         hintText: 'إضافة محتوى',
-                        hintStyle: TextStyle(color: Theme.of(context).accentColor.withOpacity(0.5), fontWeight: FontWeight.bold))),
+                        hintStyle: TextStyle(color: Theme
+                            .of(context)
+                            .accentColor
+                            .withOpacity(0.5), fontWeight: FontWeight.bold))),
                 const SizedBox(
                   height: 10,
                 ),
@@ -317,7 +350,9 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                           content.text += " " + finalText[index] + ' ';
                         },
                         child: Card(
-                          color: Theme.of(context).accentColor,
+                          color: Theme
+                              .of(context)
+                              .accentColor,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8)),
                           child: Padding(
@@ -325,12 +360,12 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                 vertical: 5.0, horizontal: 10),
                             child: Center(
                                 child: SelectableText(
-                              finalText[index],
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 12),
-                            )),
+                                  finalText[index],
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 12),
+                                )),
                           ),
                         ),
                       );
@@ -369,7 +404,9 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                   child: Card(
                                     elevation: 0,
                                     color: isBold == FontWeight.bold
-                                        ? Theme.of(context).accentColor
+                                        ? Theme
+                                        .of(context)
+                                        .accentColor
                                         : Colors.grey,
                                     child: const Padding(
                                       padding: EdgeInsets.symmetric(
@@ -393,7 +430,9 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                   child: Card(
                                     elevation: 0,
                                     color: isBold == FontWeight.normal
-                                        ? Theme.of(context).accentColor
+                                        ? Theme
+                                        .of(context)
+                                        .accentColor
                                         : Colors.grey,
                                     child: const Padding(
                                       padding: EdgeInsets.all(4.0),
@@ -443,13 +482,17 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                   child: Card(
                                     elevation: 0.0,
                                     color: textAlign == TextAlign.right
-                                        ? Theme.of(context).accentColor
+                                        ? Theme
+                                        .of(context)
+                                        .accentColor
                                         : Colors.white,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5),
                                       side: BorderSide(
                                           width: 0.5,
-                                          color: Theme.of(context).accentColor),
+                                          color: Theme
+                                              .of(context)
+                                              .accentColor),
                                     ),
                                     child: Padding(
                                         padding: const EdgeInsets.all(4.0),
@@ -457,7 +500,9 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                           Icons.format_align_right,
                                           color: textAlign == TextAlign.right
                                               ? Colors.white
-                                              : Theme.of(context).accentColor,
+                                              : Theme
+                                              .of(context)
+                                              .accentColor,
                                         )),
                                   ),
                                 ),
@@ -470,13 +515,17 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                   child: Card(
                                     elevation: 0.0,
                                     color: textAlign == TextAlign.center
-                                        ? Theme.of(context).accentColor
+                                        ? Theme
+                                        .of(context)
+                                        .accentColor
                                         : Colors.white,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5),
                                       side: BorderSide(
                                           width: 0.5,
-                                          color: Theme.of(context).accentColor),
+                                          color: Theme
+                                              .of(context)
+                                              .accentColor),
                                     ),
                                     child: Padding(
                                         padding: const EdgeInsets.all(4.0),
@@ -484,7 +533,9 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                           Icons.format_align_center,
                                           color: textAlign == TextAlign.center
                                               ? Colors.white
-                                              : Theme.of(context).accentColor,
+                                              : Theme
+                                              .of(context)
+                                              .accentColor,
                                         )),
                                   ),
                                 ),
@@ -497,13 +548,17 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                   child: Card(
                                     elevation: 0.0,
                                     color: textAlign == TextAlign.left
-                                        ? Theme.of(context).accentColor
+                                        ? Theme
+                                        .of(context)
+                                        .accentColor
                                         : Colors.white,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5),
                                       side: BorderSide(
                                           width: 0.5,
-                                          color: Theme.of(context).accentColor),
+                                          color: Theme
+                                              .of(context)
+                                              .accentColor),
                                     ),
                                     child: Padding(
                                         padding: const EdgeInsets.all(4.0),
@@ -511,7 +566,9 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                           Icons.format_align_left,
                                           color: textAlign == TextAlign.left
                                               ? Colors.white
-                                              : Theme.of(context).accentColor,
+                                              : Theme
+                                              .of(context)
+                                              .accentColor,
                                         )),
                                   ),
                                 ),
@@ -553,13 +610,13 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    CrossAxisAlignment.center,
                                     children: [
                                       Card(
                                         color: Colors.black,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(3000),
+                                          BorderRadius.circular(3000),
                                         ),
                                         child: const SizedBox(
                                           width: 20,
@@ -570,10 +627,12 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                         width: color == Colors.black ? 5 : 0,
                                         height: color == Colors.black ? 5 : 0,
                                         duration:
-                                            const Duration(milliseconds: 200),
+                                        const Duration(milliseconds: 200),
                                         decoration: BoxDecoration(
                                             color:
-                                                Theme.of(context).primaryColor,
+                                            Theme
+                                                .of(context)
+                                                .primaryColor,
                                             shape: BoxShape.circle),
                                       ),
                                     ],
@@ -587,13 +646,13 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    CrossAxisAlignment.center,
                                     children: [
                                       Card(
                                         color: Colors.white,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(3000),
+                                          BorderRadius.circular(3000),
                                         ),
                                         child: const SizedBox(
                                           width: 20,
@@ -604,10 +663,12 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                         width: color == Colors.white ? 5 : 0,
                                         height: color == Colors.white ? 5 : 0,
                                         duration:
-                                            const Duration(milliseconds: 200),
+                                        const Duration(milliseconds: 200),
                                         decoration: BoxDecoration(
                                             color:
-                                                Theme.of(context).primaryColor,
+                                            Theme
+                                                .of(context)
+                                                .primaryColor,
                                             shape: BoxShape.circle),
                                       ),
                                     ],
@@ -621,13 +682,13 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    CrossAxisAlignment.center,
                                     children: [
                                       Card(
                                         color: Colors.grey,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(3000),
+                                          BorderRadius.circular(3000),
                                         ),
                                         child: const SizedBox(
                                           width: 20,
@@ -638,10 +699,12 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                         width: color == Colors.grey ? 5 : 0,
                                         height: color == Colors.grey ? 5 : 0,
                                         duration:
-                                            const Duration(milliseconds: 200),
+                                        const Duration(milliseconds: 200),
                                         decoration: BoxDecoration(
                                             color:
-                                                Theme.of(context).primaryColor,
+                                            Theme
+                                                .of(context)
+                                                .primaryColor,
                                             shape: BoxShape.circle),
                                       ),
                                     ],
@@ -649,19 +712,23 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    color = Theme.of(context).primaryColor;
+                                    color = Theme
+                                        .of(context)
+                                        .primaryColor;
                                     setState(() {});
                                   },
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    CrossAxisAlignment.center,
                                     children: [
                                       Card(
-                                        color: Theme.of(context).primaryColor,
+                                        color: Theme
+                                            .of(context)
+                                            .primaryColor,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(3000),
+                                          BorderRadius.circular(3000),
                                         ),
                                         child: const SizedBox(
                                           width: 20,
@@ -670,18 +737,24 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                       ),
                                       AnimatedContainer(
                                         width: color ==
-                                                Theme.of(context).primaryColor
+                                            Theme
+                                                .of(context)
+                                                .primaryColor
                                             ? 5
                                             : 0,
                                         height: color ==
-                                                Theme.of(context).primaryColor
+                                            Theme
+                                                .of(context)
+                                                .primaryColor
                                             ? 5
                                             : 0,
                                         duration:
-                                            const Duration(milliseconds: 200),
+                                        const Duration(milliseconds: 200),
                                         decoration: BoxDecoration(
                                             color:
-                                                Theme.of(context).primaryColor,
+                                            Theme
+                                                .of(context)
+                                                .primaryColor,
                                             shape: BoxShape.circle),
                                       ),
                                     ],
@@ -689,19 +762,23 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    color = Theme.of(context).accentColor;
+                                    color = Theme
+                                        .of(context)
+                                        .accentColor;
                                     setState(() {});
                                   },
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    CrossAxisAlignment.center,
                                     children: [
                                       Card(
-                                        color: Theme.of(context).accentColor,
+                                        color: Theme
+                                            .of(context)
+                                            .accentColor,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(3000),
+                                          BorderRadius.circular(3000),
                                         ),
                                         child: const SizedBox(
                                           width: 20,
@@ -710,18 +787,24 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                       ),
                                       AnimatedContainer(
                                         width: color ==
-                                                Theme.of(context).accentColor
+                                            Theme
+                                                .of(context)
+                                                .accentColor
                                             ? 5
                                             : 0,
                                         height: color ==
-                                                Theme.of(context).accentColor
+                                            Theme
+                                                .of(context)
+                                                .accentColor
                                             ? 5
                                             : 0,
                                         duration:
-                                            const Duration(milliseconds: 200),
+                                        const Duration(milliseconds: 200),
                                         decoration: BoxDecoration(
                                             color:
-                                                Theme.of(context).primaryColor,
+                                            Theme
+                                                .of(context)
+                                                .primaryColor,
                                             shape: BoxShape.circle),
                                       ),
                                     ],
@@ -755,16 +838,19 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   vertical: 8.0, horizontal: 15),
-                              child: SelectableText('حجم الخط', style: titleStyle),
+                              child: SelectableText(
+                                  'حجم الخط', style: titleStyle),
                             ),
                             decoration: BoxDecoration(
                                 border: resizeIndex == 0
                                     ? Border(
-                                        bottom: BorderSide(
-                                            width: 3,
-                                            color:
-                                                Theme.of(context).primaryColor),
-                                      )
+                                  bottom: BorderSide(
+                                      width: 3,
+                                      color:
+                                      Theme
+                                          .of(context)
+                                          .primaryColor),
+                                )
                                     : null),
                           ),
                         ),
@@ -786,16 +872,19 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   vertical: 8.0, horizontal: 15),
-                              child: SelectableText('محيط الخط', style: titleStyle),
+                              child: SelectableText(
+                                  'محيط الخط', style: titleStyle),
                             ),
                             decoration: BoxDecoration(
                                 border: resizeIndex == 1
                                     ? Border(
-                                        bottom: BorderSide(
-                                            width: 3,
-                                            color:
-                                                Theme.of(context).primaryColor),
-                                      )
+                                  bottom: BorderSide(
+                                      width: 3,
+                                      color:
+                                      Theme
+                                          .of(context)
+                                          .primaryColor),
+                                )
                                     : null),
                           ),
                         ),
@@ -818,16 +907,19 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 8.0, horizontal: 15),
                               child:
-                                  SelectableText('حجم المكون الإضافي', style: titleStyle),
+                              SelectableText(
+                                  'حجم المكون الإضافي', style: titleStyle),
                             ),
                             decoration: BoxDecoration(
                                 border: resizeIndex == 2
                                     ? Border(
-                                        bottom: BorderSide(
-                                            width: 3,
-                                            color:
-                                                Theme.of(context).primaryColor),
-                                      )
+                                  bottom: BorderSide(
+                                      width: 3,
+                                      color:
+                                      Theme
+                                          .of(context)
+                                          .primaryColor),
+                                )
                                     : null),
                           ),
                         ),
@@ -866,7 +958,8 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SelectableText('مكونات اخرى انقر للإضافة', style: titleStyle),
+                    SelectableText(
+                        'مكونات اخرى انقر للإضافة', style: titleStyle),
                     const SizedBox(
                       height: 10,
                     ),
@@ -880,19 +973,18 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                 onTap: () {
                                   listWidget.add(
                                     DragWidget(
-                                      itemModel: ItemModel(
+                                      itemModel: Item(
                                           width: qrSized,
                                           height: 0,
-                                          color: 0,
-                                          align: 0,
-                                          courseId: 0,
-                                          fontWight: 0,
-                                          qrCode: 'qr',
-                                          text: '',
+                                          color: '',
+                                          align: '0',
+                                          content: 'QR',
+                                          fontWight: '0',
                                           textSize: 0,
-                                          type: 2,
+                                          type: '2',
                                           x: 50,
-                                          y: 50),
+                                          y: 50,
+                                          itemId: ''),
                                       width: width,
                                       high: height,
                                       countInStack: 2,
@@ -906,11 +998,13 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                 },
                                 child: SvgPicture.asset(
                                   'assets/svg/upload_photo.svg',
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme
+                                      .of(context)
+                                      .accentColor,
                                   width: qrSized,
                                   height: qrSized,
                                 )),
-                            const SelectableText('اضافة صورة')
+                            const Text('اضافة صورة')
                           ],
                         ),
                         const SizedBox(
@@ -926,7 +1020,9 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                               },
                               child: SvgPicture.asset(
                                 'assets/svg/qr.svg',
-                                color: Theme.of(context).accentColor,
+                                color: Theme
+                                    .of(context)
+                                    .accentColor,
                                 width: qrSized,
                                 height: qrSized,
                               ),
@@ -949,20 +1045,19 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                 onTap: () {
                                   listWidget.add(
                                     DragWidget(
-                                      itemModel: ItemModel(
-                                          height: qrSized,
-                                          width: 0,
-                                          color: 0,
-                                          align: 0,
-                                          courseId: 0,
-                                          fontWight: 0,
-                                          qrCode: '',
-                                          text: filesPikerResult!
-                                              .files.first.bytes!,
-                                          textSize: 0,
-                                          type: 1,
-                                          x: 50,
-                                          y: 50),
+                                      itemModel: Item(
+                                        height: qrSized,
+                                        width: 0,
+                                        color: '0',
+                                        align: '0',
+                                        fontWight: '0',
+                                        content: filesPikerResult!
+                                            .files.first.path.toString(),
+                                        textSize: 0,
+                                        type: '1',
+                                        x: 50,
+                                        y: 50,
+                                        itemId: '',),
                                       countInStack: listWidget.length + 1,
                                       width: width,
                                       high: height,
@@ -997,7 +1092,9 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                   padding: const EdgeInsets.all(4.0),
                                   child: Icon(
                                     Icons.clear,
-                                    color: Theme.of(context).accentColor,
+                                    color: Theme
+                                        .of(context)
+                                        .accentColor,
                                   ),
                                 )),
                           )
@@ -1015,19 +1112,18 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                   height: 60,
                   onPressed: () {
                     listWidget.add(DragWidget(
-                        itemModel: ItemModel(
+                        itemModel: Item(
                             width: widthContianer,
                             height: 0,
-                            color: color.value,
-                            align: textAlign.index,
-                            courseId: 0,
-                            fontWight: isBold.index,
-                            qrCode: '',
-                            text: content.text,
+                            color: color.value.toString(),
+                            align: textAlign.index.toString(),
+                            fontWight: isBold.index.toString(),
+                            content: content.text,
                             textSize: textSize,
-                            type: 0,
+                            type: '0',
                             x: 50,
-                            y: 50),
+                            y: 50,
+                            itemId: ''),
                         countInStack: 1,
                         high: height,
                         width: width));
@@ -1041,7 +1137,9 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                         color: Colors.white,
                         fontSize: 20),
                   ),
-                  color: Theme.of(context).primaryColor,
+                  color: Theme
+                      .of(context)
+                      .primaryColor,
                 ),
                 const SizedBox(
                   height: 20,
@@ -1055,7 +1153,10 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                 ),
                 Container(
                   height: (100 / 1.41),
-                  width: MediaQuery.of(context).size.width,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: images.length,
@@ -1114,8 +1215,13 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
       case 0:
         return Slider(
             value: textSize,
-            activeColor: Theme.of(context).primaryColor,
-            inactiveColor: Theme.of(context).primaryColor.withOpacity(0.3),
+            activeColor: Theme
+                .of(context)
+                .primaryColor,
+            inactiveColor: Theme
+                .of(context)
+                .primaryColor
+                .withOpacity(0.3),
             min: 10,
             max: 100,
             onChanged: (v) {
@@ -1125,8 +1231,13 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
       case 1:
         return Slider(
             value: widthContianer,
-            activeColor: Theme.of(context).primaryColor,
-            inactiveColor: Theme.of(context).primaryColor.withOpacity(0.3),
+            activeColor: Theme
+                .of(context)
+                .primaryColor,
+            inactiveColor: Theme
+                .of(context)
+                .primaryColor
+                .withOpacity(0.3),
             min: 10,
             max: width,
             onChanged: (v) {
@@ -1136,8 +1247,13 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
       case 2:
         return Slider(
             value: qrSized,
-            activeColor: Theme.of(context).primaryColor,
-            inactiveColor: Theme.of(context).primaryColor.withOpacity(0.3),
+            activeColor: Theme
+                .of(context)
+                .primaryColor,
+            inactiveColor: Theme
+                .of(context)
+                .primaryColor
+                .withOpacity(0.3),
             min: 10,
             max: 150,
             onChanged: (v) {
@@ -1146,7 +1262,8 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
             });
     }
   }
-  String imageString='';
+
+  String imageString = '';
 
   Future<Uint8List?> _capturePng() async {
     var container = Container(
@@ -1200,7 +1317,8 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
       "Accept": "application/json",
       "Access-Control-Allow-Origin": "*"
     };
-    var request = http.Request('GET', Uri.parse('https://training.jo-schools.com/api/pngToPdf.php'));
+    var request = http.Request(
+        'GET', Uri.parse('https://training.jo-schools.com/api/pngToPdf.php'));
     request.body = json.encode({
       "image": "$_imageString"
     });

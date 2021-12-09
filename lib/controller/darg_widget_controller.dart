@@ -1,4 +1,5 @@
 import 'package:dg_certification_system/controller/state_control.dart';
+import 'package:dg_certification_system/model/themes.dart';
 
 import '../model/item_model.dart';
 
@@ -6,7 +7,7 @@ class DragWidgetController extends StateControl {
   final int countInStack;
   final double high;
   final double width;
-  ItemModel itemModel;
+  Item itemModel;
   double x1Prev = 50.0, y1Prev = 50.0;
 
   DragWidgetController(
