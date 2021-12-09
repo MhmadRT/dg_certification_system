@@ -1,6 +1,7 @@
 import 'package:dg_certification_system/controller/courses_by_category_controller.dart';
 import 'package:dg_certification_system/model/category_model.dart';
 import 'package:dg_certification_system/responsive.dart';
+import 'package:dg_certification_system/view/widgets/add_course.dart';
 import 'package:dg_certification_system/view/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -44,70 +45,194 @@ class _CategoryScreenState extends State<CategoryScreen> {
               padding: const EdgeInsets.all(15.0),
               child: Column(
                 children: [
-                  const HeaderWidget(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            widget.categoryData.catTitle,
+                            style: TextStyle(
+                                color: Theme.of(context).accentColor,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(width: 10,),
+                          InkWell(
+                            onTap: (){
+                              showDialog(context: context, builder: (context){
+                                return Dialog(child: AddCourse(),backgroundColor: Colors.transparent,);
+                              });
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Theme.of(context).primaryColor.withOpacity(1),
+
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Icon(Icons.add,color: Theme.of(context).scaffoldBackgroundColor,),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const Expanded(child: HeaderWidget()),
+                    ],
+                  ),
                   StreamBuilder<dynamic>(
-                      stream: coursesByCategoryController!.streamController.stream,
+                      stream: coursesByCategoryController!
+                          .streamController.stream,
                       builder: (context, snapshot) {
-                        return coursesByCategoryController!.loading?
-                        Expanded(
-                          child: Column(
-                            children: [
-                              Expanded(
-                                  child: GridView.builder(
-                                    padding: const EdgeInsets.symmetric(vertical: 20),
-                                    itemCount: 10,
+                        if (coursesByCategoryController!.loading) {
+                          return Expanded(
+                            child: Column(
+                              children: [
+                                Expanded(
+                                    child: GridView.builder(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 20),
+                                  itemCount: 10,
+                                  shrinkWrap: true,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount:
+                                        Responsive.isMobile(context)
+                                            ? 2
+                                            : 3,
+                                    childAspectRatio: 1.5,
+                                    crossAxisSpacing: 10,
+                                    mainAxisSpacing: 10,
+                                  ),
+                                  itemBuilder: (BuildContext context,
+                                      int index) {
+                                    return ClipRRect(
+                                      borderRadius:
+                                          BorderRadius.circular(15),
+                                      child: Image.asset(
+                                        'assets/images/loading.gif',
+                                        fit: BoxFit.cover,
+                                      ),
+                                    );
+                                  },
+                                )),
+                              ],
+                            ),
+                          );
+                        } else {
+                          return Expanded(
+                            child: Column(
+                              children: [
+                                  Expanded(
+                                      child: GridView.builder(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 20),
+                                    itemCount:
+                                        coursesByCategoryController!
+                                            .courses!.data.length,
                                     shrinkWrap: true,
                                     gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount:
-                                      Responsive.isMobile(context) ? 2 : 3,
+                                          Responsive.isMobile(context)
+                                              ? 2
+                                              : 4,
                                       childAspectRatio: 1.5,
                                       crossAxisSpacing: 10,
                                       mainAxisSpacing: 10,
                                     ),
-                                    itemBuilder: (BuildContext context, int index) {
-                                      return ClipRRect(
-                                        borderRadius: BorderRadius.circular(15),
-                                        child: Image.asset(
-                                          'assets/images/loading.gif',
-                                          fit: BoxFit.cover,
-                                        ),
+                                    itemBuilder: (BuildContext context,
+                                        int index) {
+                                      return Column(
+                                        children: [
+                                          Expanded(
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      8),
+                                              child: Image.network(
+                                                'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y291cnNlfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+                                                fit: BoxFit.cover,
+                                                height: double.infinity,
+                                                width: double.infinity,
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: InkWell(
+                                                  onTap: () {},
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                        color: Theme.of(
+                                                                context)
+                                                            .accentColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    5)),
+                                                    child: const Center(
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsets
+                                                                .all(8),
+                                                        child: Text(
+                                                          'اضافة متدربين',
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .white),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 10,
+                                              ),
+                                              Expanded(
+                                                child: InkWell(
+                                                  onTap: () {},
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                        color: Theme.of(
+                                                                context)
+                                                            .accentColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    5)),
+                                                    child: const Center(
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsets
+                                                                .all(8),
+                                                        child: Text(
+                                                          'عرض الدورة',
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .white),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        ],
                                       );
                                     },
                                   )),
-                            ],
-                          ),
-                        ):
-                        Expanded(
-                          child: Column(
-                            children: [
-                              Expanded(
-                                  child: GridView.builder(
-                                    padding: const EdgeInsets.symmetric(vertical: 20),
-                                    itemCount: coursesByCategoryController!
-                                        .courses!.data.length,
-                                    shrinkWrap: true,
-                                    gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount:
-                                      Responsive.isMobile(context) ? 2 : 4,
-                                      childAspectRatio: 1.5,
-                                      crossAxisSpacing: 10,
-                                      mainAxisSpacing: 10,
-                                    ),
-                                    itemBuilder: (BuildContext context, int index) {
-                                      return ClipRRect(
-                                        borderRadius: BorderRadius.circular(15),
-                                        child: Image.network(
-                                          'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y291cnNlfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-                                          fit: BoxFit.cover,
-                                        ),
-                                      );
-                                    },
-                                  )),
-                            ],
-                          ),
-                        );
+                              ],
+                            ),
+                          );
+                        }
                       })
                 ],
               ),
