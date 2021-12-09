@@ -44,12 +44,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               padding: const EdgeInsets.all(15.0),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const HeaderWidget(),
-                    ],
-                  ),
+                  const HeaderWidget(),
                   StreamBuilder<dynamic>(
                       stream: coursesByCategoryController!.streamController.stream,
                       builder: (context, snapshot) {
