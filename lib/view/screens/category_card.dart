@@ -1,10 +1,12 @@
+import 'package:dg_certification_system/model/category_model.dart';
 import 'package:dg_certification_system/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-class CourseCardWidget extends StatelessWidget {
-  final String image;
+class CategoryCardWidget extends StatelessWidget {
+  final CategoryData categoryData;
 
-  const CourseCardWidget({Key? key, required this.image}) : super(key: key);
+  const CategoryCardWidget({Key? key, required this.categoryData})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +20,26 @@ class CourseCardWidget extends StatelessWidget {
                     color: Theme.of(context).accentColor, width: 0.3),
                 image: DecorationImage(
                   image: NetworkImage(
-                    image,
+                    categoryData.icon,
                   ),
                   fit: BoxFit.cover,
                 )),
-
+            child: Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    categoryData.catTitle,
+                    maxLines: 2,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18),
+                  )
+                ],
+              ),
+            ),
           ),
         ),
         const SizedBox(height: defaultPadding / 2),
@@ -37,7 +54,7 @@ class CourseCardWidget extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.all(8),
                     child: Text(
-                      'اضف تصنيف',
+                      'تصفح القسم',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

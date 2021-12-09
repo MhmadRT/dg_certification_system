@@ -13,9 +13,8 @@ class AvailableCourseList extends StatefulWidget {
   @override
   State<AvailableCourseList> createState() => _AvailableCourseListState();
 }
-
+CourseController? _coursesController;
 class _AvailableCourseListState extends State<AvailableCourseList> {
-  CourseController? _coursesController;
 
   @override
   void initState() {
