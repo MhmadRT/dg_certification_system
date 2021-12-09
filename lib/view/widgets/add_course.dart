@@ -298,76 +298,7 @@ class AddCourse extends StatelessWidget {
                     const SizedBox(
                       width: 30,
                     ),
-                    Expanded(
-                      child: InkWell(
-                        onTap: () {
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  backgroundColor: Colors.transparent,
-                                  actions: [
-                                    const AddTraineeWidget(),
-                                    const SizedBox(
-                                      height: defaultPadding,
-                                    ),
-                                    Center(
-                                      child: InkWell(
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                          ),
-                                          child: const Padding(
-                                            padding: EdgeInsets.all(10.0),
-                                            child: Icon(
-                                              Icons.clear,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              });
-                        },
-                        child: Container(
-                          height: 150,
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor,
-                            borderRadius: BorderRadius.circular(35),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.add,
-                                  color: Colors.white,
-                                  size: 50,
-                                ),
-                                Flexible(
-                                  child: SelectableText(
-                                    "اضافة متدرب",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.normal),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+
                   ],
                 ),
               ),

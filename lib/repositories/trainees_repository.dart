@@ -5,27 +5,26 @@ import 'package:dg_certification_system/model/trainee.dart';
 import 'package:dg_certification_system/utils/api_servers.dart';
 import 'package:http/http.dart' as http;
 class TraineesRepository{
-  Future<dynamic> addTrainee(
-      String cat_title, int perent_id, String icon) async {
-    var body = {
-      "cat_title": "$cat_title",
-      "perent_id": "$perent_id",
-      "icon": "$icon"
-    };
-    try {
-      var response = await http.post(
-        Uri.parse('${ApiSevers.phpServer}${ApiSevers.login}'),
-        body: json.encode(body),
-      );
-      var catResponse = jsonDecode(response.body);
-      return CustomError.fromJson(catResponse);
-    } catch (err) {
-      print(err);
-      return CustomError(
-        error: true,
-        errorMessage: "حدث خطأ يرجي المحاوله مره اخرى",
-      );
+  Future<dynamic> addTrainee( name,mobile,email,nationalId,courseId) async {
+    var request = http.MultipartRequest('POST', Uri.parse('https://training.jo-schools.com/api/addTrainee.php'));
+    request.fields.addAll({
+      'full_name': name,
+      'email': email,
+      'mobile': mobile,
+      'national_id': nationalId,
+      'course_id': courseId
+    });
+
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
     }
+    else {
+      print(response.reasonPhrase);
+    }
+
   }
   Future<dynamic> ListTrainee(int course_id) async {
     var url = Uri.https('training.jo-schools.com', '/api/getCourseTrainees.php',

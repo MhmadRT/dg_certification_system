@@ -47,7 +47,7 @@ class _TraineesScreenState extends State<TraineesScreen> {
                               isBack: true,
                             ),
                             if (Responsive.isMobile(context))
-                              AddTraineeWidget(),
+                              AddTraineeWidget(courseId: widget.courseId),
                             Expanded(
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,9 +62,9 @@ class _TraineesScreenState extends State<TraineesScreen> {
                                     const SizedBox(width: defaultPadding),
                                   // On Mobile means if the screen is less than 850 we dont want to show it
                                   if (!Responsive.isMobile(context))
-                                    const Expanded(
+                                     Expanded(
                                       flex: 2,
-                                      child: AddTraineeWidget(),
+                                      child: AddTraineeWidget(courseId: widget.courseId,),
                                     ),
                                 ],
                               ),
