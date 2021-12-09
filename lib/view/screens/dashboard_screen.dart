@@ -8,7 +8,7 @@ import 'package:dg_certification_system/view/widgets/header_widget.dart';
 import 'package:dg_certification_system/view/widgets/notifications_list_widget.dart';
 import 'package:flutter/material.dart';
 
-import 'category_card.dart';
+import '../widgets/category_card.dart';
 
 class DashboardScreen extends StatefulWidget {
   DashboardScreen({Key? key}) : super(key: key);
@@ -48,6 +48,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     child: NotificationsListWidget(),
                   ),
                 const SizedBox(width: defaultPadding),
+
                 StreamBuilder<dynamic>(
                     stream: categoryController!.streamController.stream,
                     builder: (context, snapshot) {
@@ -91,8 +92,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     child: GridView.builder(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 20),
-                                    itemCount: categoryController!
-                                        .categories!.data.length,
+                                    itemCount: 10,
                                     shrinkWrap: true,
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(
@@ -107,7 +107,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       return ClipRRect(
                                         borderRadius: BorderRadius.circular(15),
                                         child: Image.asset(
-                                            'assets/images/loading.gif'),
+                                            'assets/images/loading.gif',fit: BoxFit.cover,),
                                       );
                                     },
                                   ))

@@ -1,3 +1,5 @@
+import 'package:dg_certification_system/model/category_model.dart';
+import 'package:dg_certification_system/view/screens/category_screen.dart';
 import 'package:dg_certification_system/view/screens/login_screen.dart';
 import 'package:dg_certification_system/view/screens/main_screen.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +29,9 @@ class MyApp extends StatelessWidget {
           elevation: 0.0,
         ),
       ),
-      home: const LoginScreen(),
+      home: CategoryScreen(
+        categoryData: CategoryData(id: 1,perentId: 1,icon: '',catTitle: ''),
+      ),
     );
   }
 }
