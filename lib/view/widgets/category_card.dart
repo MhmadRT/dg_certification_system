@@ -79,23 +79,7 @@ class CategoryCardWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: defaultPadding),
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor,
-                    borderRadius: BorderRadius.circular(5)),
-                child: const Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: SelectableText(
-                      'اضف دورة',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+
           ],
         )
       ],

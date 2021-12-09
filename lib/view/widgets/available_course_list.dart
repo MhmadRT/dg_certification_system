@@ -27,7 +27,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
     return StreamBuilder<dynamic>(
         stream: coursesController!.streamController.stream,
         builder: (context, snapshot) {
-          if (snapshot.connectionState != ConnectionState.active) {
+          if (coursesController!.loading) {
             return const SizedBox(
                 height: 30,
                 width: 30,

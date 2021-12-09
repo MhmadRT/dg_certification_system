@@ -31,120 +31,104 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      controller: _scrollController,
-      child: Column(
-        children: [
-          const HeaderWidget(),
-          SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (!Responsive.isMobile(context))
-                  const Expanded(
-                    flex: 1,
-                    child: NotificationsListWidget(),
-                  ),
-                const SizedBox(width: defaultPadding),
-
-                StreamBuilder<dynamic>(
-                    stream: categoryController!.streamController.stream,
-                    builder: (context, snapshot) {
-                      return Expanded(
-                        flex: 2,
-                        child: Column(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context).primaryColor,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: SizedBox(
-                                height: 37,
-                                child: Row(
-                                  children: const [
-                                    SizedBox(
-                                      width: defaultPadding,
-                                    ),
-                                    Icon(
-                                      Icons.add_circle_outline_rounded,
-                                      color: Colors.white,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: defaultPadding,
-                                      ),
-                                      child: SelectableText(
-                                        "اضافة قسم جديد",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+    return Column(
+      children: [
+        const HeaderWidget(),
+        Expanded(
+          flex: 4,
+          child: StreamBuilder<dynamic>(
+              stream: categoryController!.streamController.stream,
+              builder: (context, snapshot) {
+                return Expanded(
+                  flex: 2,
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: SizedBox(
+                          height: 37,
+                          child: Row(
+                            children: const [
+                              SizedBox(
+                                width: defaultPadding,
+                              ),
+                              Icon(
+                                Icons.add_circle_outline_rounded,
+                                color: Colors.white,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: defaultPadding,
+                                ),
+                                child: SelectableText(
+                                  "اضافة قسم جديد",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                            ),
-                            categoryController!.loading
-                                ? Expanded(
-                                    child: GridView.builder(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 20),
-                                    itemCount: 10,
-                                    shrinkWrap: true,
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount:
-                                          Responsive.isMobile(context) ? 2 : 3,
-                                      childAspectRatio: 0.9,
-                                      crossAxisSpacing: 10,
-                                      mainAxisSpacing: 10,
-                                    ),
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return ClipRRect(
-                                        borderRadius: BorderRadius.circular(15),
-                                        child: Image.asset(
-                                            'assets/images/loading.gif',fit: BoxFit.cover,),
-                                      );
-                                    },
-                                  ))
-                                : Expanded(
-                                    child: GridView.builder(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 20),
-                                    itemCount: categoryController!
-                                        .categories!.data.length,
-                                    shrinkWrap: true,
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount:
-                                          Responsive.isMobile(context) ? 2 : 3,
-                                      childAspectRatio: 0.9,
-                                      crossAxisSpacing: 10,
-                                      mainAxisSpacing: 10,
-                                    ),
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return CategoryCardWidget(
-                                        categoryData: categoryController!
-                                            .categories!.data[index],
-                                      );
-                                    },
-                                  )),
-                          ],
+                            ],
+                          ),
                         ),
-                      );
-                    }),
-              ],
-            ),
-          ),
-          const SizedBox(height: defaultPadding),
-          const AvailableCourseList(),
-        ],
-      ),
+                      ),
+                      categoryController!.loading
+                          ? Expanded(
+                              child: GridView.builder(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 20),
+                              itemCount: 10,
+                              shrinkWrap: true,
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount:
+                                    Responsive.isMobile(context) ? 2 : 3,
+                                childAspectRatio: 0.9,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10,
+                              ),
+                              itemBuilder:
+                                  (BuildContext context, int index) {
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image.asset(
+                                      'assets/images/loading.gif',fit: BoxFit.cover,),
+                                );
+                              },
+                            ))
+                          : Expanded(
+                              child: GridView.builder(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 20),
+                              itemCount: categoryController!
+                                  .categories!.data.length,
+                              shrinkWrap: true,
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount:
+                                    Responsive.isMobile(context) ? 2 : 3,
+                                childAspectRatio: 0.9,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10,
+                              ),
+                              itemBuilder:
+                                  (BuildContext context, int index) {
+                                return CategoryCardWidget(
+                                  categoryData: categoryController!
+                                      .categories!.data[index],
+                                );
+                              },
+                            )),
+                    ],
+                  ),
+                );
+              }),
+        ),
+        const SizedBox(height: defaultPadding),
+        const AvailableCourseList(),
+      ],
     );
   }
 }

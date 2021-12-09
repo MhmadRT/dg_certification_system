@@ -18,25 +18,63 @@ class CoursesGridWidget extends StatelessWidget {
         crossAxisCount: !Responsive.isMobile(context)?6:3,
 
       ),
-      itemBuilder: (_, index) => InkWell(
-        onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => TraineesScreen(courseId: courses.data[index].cnum),));
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Container(
-              color: Colors.white,
-              child: Image.network(
-                'https://www.pikpng.com/pngl/b/180-1809582_share-this-article-certificate-transparent-background-clipart-png.png',
-                fit: BoxFit.cover,
-                color: primaryColor,
+      itemBuilder: (BuildContext context,
+          int index) {
+        return Column(
+          children: [
+            Expanded(
+              child: ClipRRect(
+                borderRadius:
+                BorderRadius.circular(
+                    8),
+                child: Image.network(
+                  'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y291cnNlfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+                  fit: BoxFit.cover,
+                  height: double.infinity,
+                  width: double.infinity,
+                ),
               ),
             ),
-          ),
-        ),
-      ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => TraineesScreen(courseId: courses.data[index].cnum),));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Theme.of(
+                              context)
+                              .accentColor,
+                          borderRadius:
+                          BorderRadius
+                              .circular(
+                              5)),
+                      child: const Center(
+                        child: Padding(
+                          padding:
+                          EdgeInsets
+                              .all(8),
+                          child: Text(
+                            'عرض الدورة',
+                            style: TextStyle(
+                                color: Colors
+                                    .white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        );
+      },
       itemCount: courses.data.length,
     );
   }

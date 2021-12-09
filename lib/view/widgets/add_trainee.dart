@@ -4,13 +4,21 @@ import 'package:flutter/material.dart';
 
 import '../../main.dart';
 
-class AddTraineeWidget extends StatelessWidget {
+class AddTraineeWidget extends StatefulWidget {
   AddTraineeWidget({Key? key, required this.courseId}) : super(key: key);
   final int courseId;
 
+  @override
+  State<AddTraineeWidget> createState() => _AddTraineeWidgetState();
+}
+
+class _AddTraineeWidgetState extends State<AddTraineeWidget> {
   final TextEditingController _fName = TextEditingController();
+
   final TextEditingController _email = TextEditingController();
+
   final TextEditingController _nationalId = TextEditingController();
+
   final TextEditingController _mobile = TextEditingController();
 
   @override
@@ -184,12 +192,20 @@ class AddTraineeWidget extends StatelessWidget {
             const SizedBox(height: 50),
             InkWell(
               onTap: () {
+
                 TraineesRepository().addTrainee(
                     _fName.text.toString(),
                     _mobile.text.toString(),
                     _email.text.toString(),
                     _nationalId.text.toString(),
-                    '$courseId');
+                    '${widget.courseId}',context).then((value) {
+                      setState(() {
+                        _fName.text='';
+                        _email.text='';
+                        _nationalId.text='';
+                        _mobile.text='';
+                      });
+                });
               },
               child: Container(
                 height: 37,

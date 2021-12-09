@@ -1,6 +1,8 @@
 import 'package:dg_certification_system/controller/courses_by_category_controller.dart';
 import 'package:dg_certification_system/model/category_model.dart';
 import 'package:dg_certification_system/responsive.dart';
+import 'package:dg_certification_system/utils/constants.dart';
+import 'package:dg_certification_system/view/screens/trainees_screen.dart';
 import 'package:dg_certification_system/view/widgets/add_course.dart';
 import 'package:dg_certification_system/view/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
@@ -48,37 +50,58 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            widget.categoryData.catTitle,
-                            style: TextStyle(
-                                color: Theme.of(context).accentColor,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(width: 10,),
-                          InkWell(
-                            onTap: (){
-                              showDialog(context: context, builder: (context){
-                                return Dialog(child: AddCourse(),backgroundColor: Colors.transparent,);
-                              });
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Theme.of(context).primaryColor.withOpacity(1),
 
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: Icon(Icons.add,color: Theme.of(context).scaffoldBackgroundColor,),
-                              ),
-                            ),
-                          )
-                        ],
+                      const Expanded(child: HeaderWidget(isBack: true,)),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        widget.categoryData.catTitle,
+                        style: TextStyle(
+                            color: Theme.of(context).accentColor,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
                       ),
-                      const Expanded(child: HeaderWidget()),
+                      const SizedBox(width: 10,),
+                      InkWell(
+                        onTap: (){
+                          showDialog(context: context, builder: (context){
+                            return Dialog(child: AddCourse(),backgroundColor: Colors.transparent,);
+                          });
+                        },
+                        child:  Container(
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).primaryColor,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: SizedBox(
+                            height: 37,
+                            child: Row(
+                              children: const [
+                                SizedBox(
+                                  width: defaultPadding,
+                                ),
+                                Icon(
+                                  Icons.add_circle_outline_rounded,
+                                  color: Colors.white,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: defaultPadding,
+                                  ),
+                                  child: Text(
+                                    "اضافة دورة جديدة",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                   StreamBuilder<dynamic>(
@@ -166,38 +189,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                             children: [
                                               Expanded(
                                                 child: InkWell(
-                                                  onTap: () {},
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                        color: Theme.of(
-                                                                context)
-                                                            .accentColor,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    5)),
-                                                    child: const Center(
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsets
-                                                                .all(8),
-                                                        child: Text(
-                                                          'اضافة متدربين',
-                                                          style: TextStyle(
-                                                              color: Colors
-                                                                  .white),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 10,
-                                              ),
-                                              Expanded(
-                                                child: InkWell(
-                                                  onTap: () {},
+                                                  onTap: () {
+                                                    Navigator.push(context, MaterialPageRoute(builder: (context) => TraineesScreen(courseId: coursesByCategoryController!
+                                                        .courses!.data[index].cnum),));
+                                                  },
                                                   child: Container(
                                                     decoration: BoxDecoration(
                                                         color: Theme.of(
