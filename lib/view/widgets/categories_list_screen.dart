@@ -5,7 +5,7 @@ import 'package:dg_certification_system/utils/constants.dart';
 import 'package:dg_certification_system/view/screens/category_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
+import '../../utils/string_extensions.dart';
 import '../../main.dart';
 import '../../responsive.dart';
 import 'package:dg_certification_system/view/widgets/search_field_widget.dart';
@@ -132,8 +132,7 @@ class _CategoriesListWidgetState extends State<CategoriesListWidget> {
 Widget categoryWidget(CategoryData category, BuildContext context) {
   return InkWell(
     onTap: () {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const CategoryScreen()));
+
     },
     child: Padding(
       padding: const EdgeInsets.all(8.0),
