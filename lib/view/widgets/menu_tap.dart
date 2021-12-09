@@ -52,7 +52,7 @@ class _MenuTapState extends State<MenuTap> {
               ),
               Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: Text(
+                child: SelectableText(
                   widget.menuTapModel.title,
                   style: const TextStyle(
                     color: Colors.black,

@@ -29,9 +29,7 @@ class MyApp extends StatelessWidget {
           elevation: 0.0,
         ),
       ),
-      home: CategoryScreen(
-        categoryData: CategoryData(id: 1,perentId: 1,icon: '',catTitle: ''),
-      ),
+      home: LoginScreen(),
     );
   }
 }

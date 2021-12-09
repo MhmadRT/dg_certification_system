@@ -43,7 +43,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                 children: [
                   Row(
                     children: const [
-                      Text('قائمة الدورات المتاحة'),
+                      SelectableText('قائمة الدورات المتاحة'),
                     ],
                   ),
                   const SizedBox(height: defaultPadding),
@@ -61,7 +61,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                           child: const Center(
                             child: Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: Text(
+                              child: SelectableText(
                                 'الرقم',
                                 style: TextStyle(color: Colors.white),
                               ),
@@ -83,7 +83,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                           child: const Center(
                             child: Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: Text(
+                              child: SelectableText(
                                 'اسم الدورة',
                                 style: TextStyle(color: Colors.white),
                               ),
@@ -98,7 +98,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                       if (!Responsive.isMobile(context))
                         const Expanded(
                           flex: 2,
-                          child: Text(''),
+                          child: SelectableText(''),
                         ),
                       if (!Responsive.isMobile(context))
                         Expanded(
@@ -107,7 +107,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                       if (!Responsive.isMobile(context))
                         const Expanded(
                           flex: 2,
-                          child: Text(''),
+                          child: SelectableText(''),
                         ),
                       if (Responsive.isMobile(context))
                         const SizedBox(
@@ -124,7 +124,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                           child: const Center(
                             child: Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: Text(
+                              child: SelectableText(
                                 'اجراءات',
                                 style: TextStyle(color: Colors.white),
                               ),
@@ -164,7 +164,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: Center(
                                           child: SizedBox(
-                                            child: Text(coursesController!.courses!.data[index].cnum.toString()),
+                                            child: SelectableText(coursesController!.courses!.data[index].cnum.toString()),
                                           ),
                                         ),
                                       ),
@@ -183,7 +183,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Center(
-                                        child: Text(coursesController!.courses!.data[index].cname),
+                                        child: SelectableText(coursesController!.courses!.data[index].cname),
                                       ),
                                     ),
                                   ),
@@ -202,7 +202,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                                     .add_circle_outline_rounded,
                                                 color: Colors.white,
                                               ),
-                                              label: const Text("إضافة متدربين"),
+                                              label: const SelectableText("إضافة متدربين"),
                                               style: TextButton.styleFrom(
                                                 backgroundColor: secondColor,
                                               ),
@@ -222,7 +222,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                                     .add_circle_outline_rounded,
                                                 color: Colors.white,
                                               ),
-                                              label: const Text("اصدار شهاده"),
+                                              label: const SelectableText("اصدار شهاده"),
                                               style: TextButton.styleFrom(
                                                 backgroundColor: secondColor,
                                               ),

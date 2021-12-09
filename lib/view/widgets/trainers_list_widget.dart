@@ -45,7 +45,7 @@ class TrainersListWidget extends StatelessWidget {
                     child: Center(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Text(
+                        child: SelectableText(
                           "المدربين",
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
@@ -71,20 +71,20 @@ class TrainersListWidget extends StatelessWidget {
                   children: const [
                     Expanded(
                         flex: 2,
-                        child: Text(
+                        child: SelectableText(
                           "الأسم الكامل",
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         )),
                     Expanded(
                         flex: 2,
-                        child: Text("ألبريد ألألكتروني",
+                        child: SelectableText("ألبريد ألألكتروني",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold))),
                     Expanded(
                         flex: 1,
-                        child: Text("رقم الهاتف",
+                        child: SelectableText("رقم الهاتف",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold))),
@@ -124,13 +124,13 @@ Widget recentFileDataRow(RecentFile fileInfo, BuildContext context) {
               if (!Responsive.isMobile(context))
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-                  child: Text("Angelina Jolie"),
+                  child: SelectableText("Angelina Jolie"),
                 ),
             ],
           ),
         ),
-        Expanded(flex: 2, child: Text(fileInfo.date!)),
-        Expanded(flex: 1, child: Text(fileInfo.size!)),
+        Expanded(flex: 2, child: SelectableText(fileInfo.date!)),
+        Expanded(flex: 1, child: SelectableText(fileInfo.size!)),
       ],
     ),
   );

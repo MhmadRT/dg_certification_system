@@ -21,7 +21,7 @@ class NotificationsListWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            const SelectableText(
               "التنبيهات",
               style: TextStyle(
                 fontSize: 18,

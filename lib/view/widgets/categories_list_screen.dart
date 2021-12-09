@@ -60,7 +60,7 @@ class _CategoriesListWidgetState extends State<CategoriesListWidget> {
                     child: const Center(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Text(
+                        child: SelectableText(
                           "اقسام الدورات",
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
@@ -88,12 +88,12 @@ class _CategoriesListWidgetState extends State<CategoriesListWidget> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
-                    Text(
+                    SelectableText(
                       "الأقسام",
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
-                    Text("",
+                    SelectableText("",
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold)),
                   ],
@@ -147,7 +147,7 @@ Widget categoryWidget(CategoryData category, BuildContext context) {
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: defaultPadding / 2),
-                  child: Text(category.catTitle),
+                  child: SelectableText(category.catTitle),
                 ),
               ],
             ),

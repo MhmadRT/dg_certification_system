@@ -27,7 +27,7 @@ class UserCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: defaultPadding/2),
-                Text(
+                SelectableText(
                   "Aws Hakam",
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),

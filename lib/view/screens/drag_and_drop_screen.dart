@@ -25,8 +25,8 @@ class DragAndDropScreen extends StatefulWidget {
 }
 
 class _DragAndDropScreenState extends State<DragAndDropScreen> {
-  double height = 100;
-  double width = 100;
+  double height = 646;
+  double width = 910;
   TextEditingController content = TextEditingController();
   FontWeight isBold = FontWeight.normal;
   TextAlign textAlign = TextAlign.center;
@@ -63,17 +63,9 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.width);
+
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    print(MediaQuery.of(context).size.height);
-    if (landScape) {
-      width = (MediaQuery.of(context).size.height / 1.5);
-      height = (width * 1.41);
-    } else {
-      height = (MediaQuery.of(context).size.height / 1.5);
-      width = (height * 1.41);
-    }
 
     return Scaffold(
       body: Scrollbar(
@@ -202,7 +194,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 15.0),
                   child: Row(
                     children: [
-                      Text('شكل العرض', style: titleStyle),
+                      SelectableText('شكل العرض', style: titleStyle),
                       const SizedBox(
                         width: 10,
                       ),
@@ -214,7 +206,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                         },
                         child: const Padding(
                           padding: EdgeInsets.all(10.0),
-                          child: Text(
+                          child: SelectableText(
                             'Portrait',
                             style: TextStyle(color: Colors.white),
                           ),
@@ -237,7 +229,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                         },
                         child: const Padding(
                           padding: EdgeInsets.all(10.0),
-                          child: Text(
+                          child: SelectableText(
                             'Landscape',
                             style: TextStyle(color: Colors.white),
                           ),
@@ -310,7 +302,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                Text('اضافة الي النص', style: titleStyle),
+                SelectableText('اضافة الي النص', style: titleStyle),
                 const SizedBox(
                   height: 5,
                 ),
@@ -332,7 +324,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 5.0, horizontal: 10),
                             child: Center(
-                                child: Text(
+                                child: SelectableText(
                               finalText[index],
                               style: const TextStyle(
                                   color: Colors.white,
@@ -361,7 +353,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text('الخط', style: titleStyle),
+                            SelectableText('الخط', style: titleStyle),
                             const SizedBox(
                               height: 5,
                             ),
@@ -382,7 +374,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                     child: const Padding(
                                       padding: EdgeInsets.symmetric(
                                           vertical: 4.0, horizontal: 8),
-                                      child: Text(
+                                      child: SelectableText(
                                         'Bold',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
@@ -405,7 +397,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                         : Colors.grey,
                                     child: const Padding(
                                       padding: EdgeInsets.all(4.0),
-                                      child: Text(
+                                      child: SelectableText(
                                         'Normal',
                                         style: TextStyle(
                                           fontWeight: FontWeight.normal,
@@ -436,7 +428,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text('المحادات', style: titleStyle),
+                            SelectableText('المحادات', style: titleStyle),
                             const SizedBox(
                               height: 5,
                             ),
@@ -544,7 +536,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(
+                            SelectableText(
                               'اللون',
                               style: titleStyle,
                             ),
@@ -763,7 +755,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   vertical: 8.0, horizontal: 15),
-                              child: Text('حجم الخط', style: titleStyle),
+                              child: SelectableText('حجم الخط', style: titleStyle),
                             ),
                             decoration: BoxDecoration(
                                 border: resizeIndex == 0
@@ -794,7 +786,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   vertical: 8.0, horizontal: 15),
-                              child: Text('محيط الخط', style: titleStyle),
+                              child: SelectableText('محيط الخط', style: titleStyle),
                             ),
                             decoration: BoxDecoration(
                                 border: resizeIndex == 1
@@ -826,7 +818,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 8.0, horizontal: 15),
                               child:
-                                  Text('حجم المكون الإضافي', style: titleStyle),
+                                  SelectableText('حجم المكون الإضافي', style: titleStyle),
                             ),
                             decoration: BoxDecoration(
                                 border: resizeIndex == 2
@@ -856,7 +848,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                     Container(
                       width: widthContianer,
                       color: Colors.black12,
-                      child: Text(
+                      child: SelectableText(
                         content.text,
                         textAlign: textAlign,
                         style: TextStyle(
@@ -874,7 +866,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('مكونات اخرى انقر للإضافة', style: titleStyle),
+                    SelectableText('مكونات اخرى انقر للإضافة', style: titleStyle),
                     const SizedBox(
                       height: 10,
                     ),
@@ -918,7 +910,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                   width: qrSized,
                                   height: qrSized,
                                 )),
-                            const Text('اضافة صورة')
+                            const SelectableText('اضافة صورة')
                           ],
                         ),
                         const SizedBox(
@@ -939,7 +931,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                                 height: qrSized,
                               ),
                             ),
-                            const Text('QR')
+                            const SelectableText('QR')
                           ],
                         ),
                         const SizedBox(
@@ -1042,7 +1034,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                     print(items);
                     setState(() {});
                   },
-                  child: const Text(
+                  child: const SelectableText(
                     'إضافة',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -1054,7 +1046,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                Text(
+                SelectableText(
                   'اختر الخلفية',
                   style: titleStyle,
                 ),
@@ -1099,7 +1091,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
                     items.clear();
                     setState(() {});
                   },
-                  child: Text('حذف الكل'),
+                  child: SelectableText('حذف الكل'),
                 ),
               ],
             ),
@@ -1164,7 +1156,7 @@ class _DragAndDropScreenState extends State<DragAndDropScreen> {
               width: 5.0),
           color: Colors.redAccent,
         ),
-        child: Text(
+        child: SelectableText(
           "This is an invisible widget",
           style: Theme
               .of(context)

@@ -42,17 +42,18 @@ class SingleNotificationCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  SelectableText(
                     title,
                     maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+
+
                   ),
 
                 ],
               ),
             ),
           ),
-          Text(notificationDate)
+          SelectableText(notificationDate)
         ],
       ),
     );

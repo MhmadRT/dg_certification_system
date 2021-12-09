@@ -68,7 +68,7 @@ class DragWidget extends StatelessWidget {
         case 0:
           return SizedBox(
               width: itemModel.width,
-              child: Text(
+              child: SelectableText(
                 itemModel.text,
                 textAlign: itemModel.align == 0
                     ? TextAlign.left

@@ -36,7 +36,7 @@ class CourseCardWidget extends StatelessWidget {
                 child: const Center(
                   child: Padding(
                     padding: EdgeInsets.all(8),
-                    child: Text(
+                    child: SelectableText(
                       'اضف تصنيف',
                       style: TextStyle(color: Colors.white),
                     ),
@@ -53,7 +53,7 @@ class CourseCardWidget extends StatelessWidget {
                 child: const Center(
                   child: Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text(
+                    child: SelectableText(
                       'اضف دورة',
                       style: TextStyle(color: Colors.white),
                     ),

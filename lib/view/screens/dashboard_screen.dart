@@ -75,7 +75,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       padding: EdgeInsets.symmetric(
                                         horizontal: defaultPadding,
                                       ),
-                                      child: Text(
+                                      child: SelectableText(
                                         "اضافة قسم جديد",
                                         style: TextStyle(
                                           color: Colors.white,

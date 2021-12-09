@@ -40,7 +40,7 @@ class AddTraineeWidget extends StatelessWidget {
                   child: const Center(
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: defaultPadding),
-                      child: Text('اضافة متدرب',style: TextStyle(
+                      child: SelectableText('اضافة متدرب',style: TextStyle(
                           color: Colors.white,fontWeight: FontWeight.bold
                       ),),
                     ),
@@ -52,7 +52,7 @@ class AddTraineeWidget extends StatelessWidget {
             Row(
               children: const [
                 Expanded(
-                  child: Text('الاسم الكامل',style: TextStyle(
+                  child: SelectableText('الاسم الكامل',style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16
                   ),),
@@ -83,7 +83,7 @@ class AddTraineeWidget extends StatelessWidget {
             Row(
               children: const [
                 Expanded(
-                  child: Text('البريد الألكتروني',style: TextStyle(
+                  child: SelectableText('البريد الألكتروني',style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16
                   ),),
@@ -114,7 +114,7 @@ class AddTraineeWidget extends StatelessWidget {
             Row(
               children: const [
                 Expanded(
-                  child: Text('رقم الهاتف',style: TextStyle(
+                  child: SelectableText('رقم الهاتف',style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16
                   ),),
@@ -152,7 +152,7 @@ class AddTraineeWidget extends StatelessWidget {
               child: const Center(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: defaultPadding),
-                  child: Text('اضافة متدرب',style: TextStyle(
+                  child: SelectableText('اضافة متدرب',style: TextStyle(
                       color: Colors.white,fontWeight: FontWeight.bold
                   ),),
                 ),

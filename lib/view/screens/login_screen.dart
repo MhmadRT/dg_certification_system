@@ -149,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            SelectableText(
               "تسجيل الدخول",
               style: TextStyle(
                   fontSize: 22,
@@ -274,7 +274,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   controller!.login();
                 },
-                child: const Text(
+                child: const SelectableText(
                   'تسجيل الدخول',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -285,7 +285,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             const Padding(
               padding: EdgeInsets.all(20.0),
-              child: Center(child: Text('هل نسيت كلمة المرور ؟')),
+              child: Center(child: SelectableText('هل نسيت كلمة المرور ؟')),
             ),
           ],
         ),

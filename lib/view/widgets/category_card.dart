@@ -37,7 +37,7 @@ class CategoryCardWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  SelectableText(
                     categoryData.catTitle,
                     maxLines: 2,
                     style: const TextStyle(
@@ -70,7 +70,7 @@ class CategoryCardWidget extends StatelessWidget {
                   child: const Center(
                     child: Padding(
                       padding: EdgeInsets.all(8),
-                      child: Text(
+                      child: SelectableText(
                         'تصفح القسم',
                         style: TextStyle(color: Colors.white),
                       ),
@@ -88,7 +88,7 @@ class CategoryCardWidget extends StatelessWidget {
                 child: const Center(
                   child: Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text(
+                    child: SelectableText(
                       'اضف دورة',
                       style: TextStyle(color: Colors.white),
                     ),

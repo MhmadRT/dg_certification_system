@@ -43,7 +43,7 @@ class _CertificatesThemesListState extends State<CertificatesThemesList> {
                       Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: defaultPadding),
-                        child: Text(
+                        child: SelectableText(
                           "اضف سمة جديدة",
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),

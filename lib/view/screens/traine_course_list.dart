@@ -60,7 +60,7 @@ class _EmployeeListState extends State<EmployeeList> {
                                   icon: const Icon(
                                       Icons.clear, color: secondaryColor,
                                       size: 25),
-                                  label: const Text("خروج")),
+                                  label: const SelectableText("خروج")),
                             ),
                             Expanded(
                               child: SingleChildScrollView(
@@ -75,7 +75,7 @@ class _EmployeeListState extends State<EmployeeList> {
                                     crossAxisAlignment: CrossAxisAlignment
                                         .stretch,
                                     children: [
-                                      Text(
+                                      SelectableText(
                                         "قائمة المتدربين",
                                         style: Theme
                                             .of(context)
@@ -94,7 +94,7 @@ class _EmployeeListState extends State<EmployeeList> {
                                                 Expanded(
                                                     flex: 1,
                                                     child: SizedBox(
-                                                      child: Text(
+                                                      child: SelectableText(
                                                         "الرقم", style: Theme
                                                           .of(context)
                                                           .textTheme
@@ -103,7 +103,7 @@ class _EmployeeListState extends State<EmployeeList> {
                                                 Expanded(
                                                     flex: 3,
                                                     child: SizedBox(
-                                                        child: Text(
+                                                        child: SelectableText(
                                                           "اسم المتدرب",
                                                           style: Theme
                                                               .of(context)
@@ -112,7 +112,7 @@ class _EmployeeListState extends State<EmployeeList> {
                                                 Expanded(
                                                     flex: 2,
                                                     child:
-                                                    SizedBox(child: Text(
+                                                    SizedBox(child: SelectableText(
                                                       "البريد الالكتروني",
                                                       style: Theme
                                                           .of(context)
@@ -120,7 +120,7 @@ class _EmployeeListState extends State<EmployeeList> {
                                                           .subtitle1,))),
                                                 Expanded(
                                                     flex: 2,
-                                                    child: SizedBox(child: Text(
+                                                    child: SizedBox(child: SelectableText(
                                                       "رقم الموبايل",
                                                       style: Theme
                                                           .of(context)
@@ -153,7 +153,7 @@ class _EmployeeListState extends State<EmployeeList> {
                                                     Expanded(
                                                         flex: 1,
                                                         child: SizedBox(
-                                                          child: Text(
+                                                          child: SelectableText(
                                                               list[index].id
                                                                   .toString()),
                                                         )),
@@ -208,7 +208,7 @@ class _EmployeeListState extends State<EmployeeList> {
                                                               padding: const EdgeInsets
                                                                   .symmetric(
                                                                   horizontal: 8.0),
-                                                              child: Text(
+                                                              child: SelectableText(
                                                                   list[index]
                                                                       .name),
                                                             ),
@@ -218,14 +218,14 @@ class _EmployeeListState extends State<EmployeeList> {
                                                     Expanded(
                                                         flex: 2,
                                                         child: SizedBox(
-                                                          child: Text(
+                                                          child: SelectableText(
                                                               list[index]
                                                                   .email),
                                                         )),
                                                     Expanded(
                                                         flex: 2,
                                                         child: SizedBox(
-                                                          child: Text(
+                                                          child: SelectableText(
                                                               list[index].mobile
                                                                   .toString()),
                                                         )),

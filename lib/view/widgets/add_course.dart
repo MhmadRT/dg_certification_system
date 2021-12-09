@@ -79,7 +79,7 @@ class AddCourse extends StatelessWidget {
                     child: Center(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Text(
+                        child: SelectableText(
                           "اضافة دورة تدريبية",
                           style: TextStyle(
                               color: Colors.white,
@@ -104,7 +104,7 @@ class AddCourse extends StatelessWidget {
               children: const [
                 Expanded(
                   flex: 1,
-                  child: Text(
+                  child: SelectableText(
                     'اسم الدورة',
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -137,7 +137,7 @@ class AddCourse extends StatelessWidget {
               children: const [
                 Expanded(
                   flex: 1,
-                  child: Text(
+                  child: SelectableText(
                     'عدد المتدربين',
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -170,7 +170,7 @@ class AddCourse extends StatelessWidget {
               children: const [
                 Expanded(
                   flex: 1,
-                  child: Text(
+                  child: SelectableText(
                     'تاريخ البدء',
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -203,7 +203,7 @@ class AddCourse extends StatelessWidget {
               children: const [
                 Expanded(
                   flex: 1,
-                  child: Text(
+                  child: SelectableText(
                     'تاريخ الانتهاء',
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -278,7 +278,7 @@ class AddCourse extends StatelessWidget {
                                 height: 10,
                               ),
                               const Flexible(
-                                child: Text(
+                                child: SelectableText(
                                   "اضافة مجموعة من المتدربين عن طريق ملف اكسل",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -351,7 +351,7 @@ class AddCourse extends StatelessWidget {
                                 size: 50,
                               ),
                               Flexible(
-                                child: Text(
+                                child: SelectableText(
                                   "اضافة متدرب",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -385,7 +385,7 @@ class AddCourse extends StatelessWidget {
 
                   },
                   child: const Center(
-                    child: Text(
+                    child: SelectableText(
                       "أضافة",
                       style: TextStyle(
                           color: Colors.white,

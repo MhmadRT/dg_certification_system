@@ -14,10 +14,9 @@ class HomeController extends StateControl {
   List<Widget> screen =  [
     DashboardScreen(),
     const CoursesScreen(),
-    const TrainersScreen(),
     const OpenCourserScreen(),
     const CertificatesThemesList(),
-    const SettingsScreen(),
+    // const SettingsScreen(),
   ];
   List<MenuTapModel>? taps;
 
@@ -58,13 +57,13 @@ class HomeController extends StateControl {
         small: false,
         clicked: index == 3,
       ),
-      MenuTapModel(
-        icon: 'technician',
-        title: 'الإعدادات',
-        id: 4,
-        small: false,
-        clicked: index == 4,
-      ),
+      // MenuTapModel(
+      //   icon: 'technician',
+      //   title: 'الإعدادات',
+      //   id: 4,
+      //   small: false,
+      //   clicked: index == 4,
+      // ),
     ];
     super.init();
   }

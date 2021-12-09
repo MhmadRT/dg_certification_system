@@ -48,7 +48,7 @@ class TraineesListWidget extends StatelessWidget {
                     child: Center(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Text(
+                        child: SelectableText(
                           "المدربين",
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
@@ -74,20 +74,22 @@ class TraineesListWidget extends StatelessWidget {
                   children: const [
                     Expanded(
                         flex: 2,
-                        child: Text(
+                        child: SelectableText(
                           "الأسم الكامل",
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         )),
+                    SizedBox(width: defaultPadding,),
                     Expanded(
                         flex: 2,
-                        child: Text("ألبريد ألألكتروني",
+                        child: SelectableText("ألبريد ألألكتروني",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold))),
+                    SizedBox(width: defaultPadding,),
                     Expanded(
                         flex: 2,
-                        child: Text("رقم الهاتف",
+                        child: SelectableText("رقم الهاتف",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold))),
@@ -117,6 +119,7 @@ Widget recentFileDataRow(TraineesCourseModel fileInfo, BuildContext context) {
           flex: 2,
           child: Row(
             children: [
+              if (!Responsive.isMobile(context))
               Container(
                 height: 38,
                 width: 38,
@@ -124,16 +127,20 @@ Widget recentFileDataRow(TraineesCourseModel fileInfo, BuildContext context) {
                     shape: BoxShape.circle,
                     color: Theme.of(context).accentColor),
               ),
-              if (!Responsive.isMobile(context))
-                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-                  child: Text(fileInfo.fullName!),
+
+                 Expanded(
+                   child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+                    child: SelectableText(fileInfo.fullName!),
                 ),
+                 ),
             ],
           ),
         ),
-        Expanded(flex: 2, child: Text(fileInfo.email!)),
-        Expanded(flex: 2, child: Text(fileInfo.mobile!)),
+        SizedBox(width: defaultPadding,),
+        Expanded(flex: 2, child: SelectableText(fileInfo.email!)),
+        SizedBox(width: defaultPadding,),
+        Expanded(flex: 2, child: SelectableText(fileInfo.mobile!)),
       ],
     ),
   );

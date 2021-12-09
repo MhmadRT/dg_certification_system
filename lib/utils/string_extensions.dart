@@ -43,7 +43,7 @@ extension ColorExtension on String {
           height: 30,
           color: primaryColor,
           child: Center(
-            child: Text(
+            child: SelectableText(
               this,
               style: const TextStyle(
                   color: Colors.white,
@@ -69,7 +69,7 @@ extension ColorExtension on String {
                 borderRadius: BorderRadius.all(Radius.circular(32.0))),
             title: Column(
               children: [
-                const Center(child: Text("حدث خطأ")),
+                const Center(child: SelectableText("حدث خطأ")),
                 Container(height: 0.5, color: Colors.grey),
               ],
             ),
@@ -80,7 +80,7 @@ extension ColorExtension on String {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 40.0),
-                  child: Center(child: Text(this)),
+                  child: Center(child: SelectableText(this)),
                 ),
                 InkWell(
                   onTap: () => Navigator.of(context).pop(),
@@ -92,7 +92,7 @@ extension ColorExtension on String {
                           bottomLeft: Radius.circular(32.0),
                           bottomRight: Radius.circular(32.0)),
                     ),
-                    child: const Text(
+                    child: const SelectableText(
                       "إغلاق",
                       style: TextStyle(color: Colors.white),
                       textAlign: TextAlign.center,
@@ -122,7 +122,7 @@ extension ColorExtension on String {
                   borderRadius: BorderRadius.all(Radius.circular(32.0))),
               title: Column(
                 children: [
-                  const Center(child: Text("حدث خطأ")),
+                  const Center(child: SelectableText("حدث خطأ")),
                   Container(height: 0.5, color: Colors.grey),
                 ],
               ),
@@ -133,7 +133,7 @@ extension ColorExtension on String {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 40.0),
-                    child: Center(child: Text(this)),
+                    child: Center(child: SelectableText(this)),
                   ),
                   InkWell(
                     onTap: () => Navigator.of(context).pushAndRemoveUntil(
@@ -150,7 +150,7 @@ extension ColorExtension on String {
                             bottomLeft: Radius.circular(32.0),
                             bottomRight: Radius.circular(32.0)),
                       ),
-                      child: const Text(
+                      child: const SelectableText(
                         "تسجيل الدخول",
                         style: TextStyle(color: Colors.white),
                         textAlign: TextAlign.center,
@@ -178,7 +178,7 @@ extension ColorExtension on String {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                   margin: const EdgeInsets.only(left: 7, right: 7),
-                  child: Text(this)),
+                  child: SelectableText(this)),
             ),
           ],
         ),
