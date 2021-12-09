@@ -13,12 +13,16 @@ class CourseController extends StateControl {
   }
 
   @override
-  void init() async {
+  void init()  {
+   getData();
+    super.init();
+  }
+
+  getData()async{
     loading = true;
     notifyListeners();
     courses = await CourseRepository().getCourse(context);
     loading = false;
     notifyListeners();
-    super.init();
   }
 }

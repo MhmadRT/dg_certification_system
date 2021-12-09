@@ -13,19 +13,19 @@ class AvailableCourseList extends StatefulWidget {
   @override
   State<AvailableCourseList> createState() => _AvailableCourseListState();
 }
-CourseController? _coursesController;
+CourseController? coursesController;
 class _AvailableCourseListState extends State<AvailableCourseList> {
 
   @override
   void initState() {
     super.initState();
-    _coursesController = CourseController(context);
+    coursesController = CourseController(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<dynamic>(
-        stream: _coursesController!.streamController.stream,
+        stream: coursesController!.streamController.stream,
         builder: (context, snapshot) {
           if (snapshot.connectionState != ConnectionState.active) {
             return const SizedBox(
@@ -138,7 +138,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                       shrinkWrap: true,
                       controller: ScrollController(),
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: _coursesController!.courses!.data.length,
+                      itemCount: coursesController!.courses!.data.length,
                       separatorBuilder: (BuildContext context, int index) =>
                           const Divider(
                         thickness: 0.5,
@@ -164,7 +164,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: Center(
                                           child: SizedBox(
-                                            child: Text(_coursesController!.courses!.data[index].cnum.toString()),
+                                            child: Text(coursesController!.courses!.data[index].cnum.toString()),
                                           ),
                                         ),
                                       ),
@@ -183,7 +183,7 @@ class _AvailableCourseListState extends State<AvailableCourseList> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Center(
-                                        child: Text(_coursesController!.courses!.data[index].cname),
+                                        child: Text(coursesController!.courses!.data[index].cname),
                                       ),
                                     ),
                                   ),

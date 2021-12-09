@@ -1,5 +1,6 @@
 import 'package:dg_certification_system/view/screens/certificates_theme_list.dart';
 import 'package:dg_certification_system/view/screens/login_screen.dart';
+import 'package:dg_certification_system/view/screens/open_courses_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
@@ -25,8 +26,8 @@ extension ColorExtension on String {
         return Container();
       case 'UsersScreen':
         return Container();
-      case 'EmployeeScreen':
-        return Container();
+      case 'OpenCourserScreen':
+        return OpenCourserScreen();
       //AddUser
       case 'AddUser':
         return Container();
